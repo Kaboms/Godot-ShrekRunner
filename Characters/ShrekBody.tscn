@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Characters/Shrek.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/KinematicBody.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.314968
+
+[node name="KinematicBody" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -3.23904e-08, -0.741006, 0, 0.725437, -3.17098e-08, 0, 0.546548, 0.0355998 )
+shape = SubResource( 1 )
+
+[node name="Shrek" parent="." instance=ExtResource( 1 )]
+
+[connection signal="Jump" from="Shrek" to="." method="_on_Shrek_Jump"]
+[connection signal="MoveLeft" from="Shrek" to="." method="_on_Shrek_MoveLeft"]
+[connection signal="MoveRight" from="Shrek" to="." method="_on_Shrek_MoveRight"]
