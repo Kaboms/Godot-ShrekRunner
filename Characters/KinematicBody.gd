@@ -27,24 +27,40 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	Velocity.z = Speed * delta
+	HandleMovement(delta)
 	
-	var rightMove = Speed * MoveDirection
-	MoveAlpha += rightMove * MoveDirection * delta
+	if get_slide_count() > 0:
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.collider
+			if (collider.get_collision_layer_bit(2)) && collision.normal.z < -0.5:
+				$Shrek.Death()
+				move_and_slide(Vector3.ZERO, Vector3.UP)
+				break
 
-	if MoveDirection != 0:
-		Velocity.x = Speed * MoveDirection * delta
-		if MoveAlpha >= MoveDistance:
-			Velocity.x = 0
-			MoveAlpha = 0
-			MoveDirection = 0
+func HandleMovement(delta):
+	if !$Shrek.IsDeath:
+		Velocity.z = Speed * delta
 
-	if IsJump:
-		IsJump = false
-		Velocity.y = JumpImpulse
-		
+		var rightMove = Speed * MoveDirection
+		MoveAlpha += rightMove * MoveDirection * delta
+
+		if MoveDirection != 0:
+			Velocity.x = Speed * MoveDirection * delta
+			if MoveAlpha >= MoveDistance:
+				Velocity.x = 0
+				MoveAlpha = 0
+				MoveDirection = 0
+
 	Velocity.y += Gravity * delta
 
+	if !is_on_floor():
+		IsJump = true
+		
+	if IsJump && is_on_floor():
+		IsJump = false	
+		$Shrek.Landed()
+		
 	Velocity = move_and_slide(Velocity,  Vector3.UP)
 
 func MoveTo(NewMoveDirection):
@@ -62,4 +78,4 @@ func _on_Shrek_MoveLeft():
 	
 func _on_Shrek_Jump():
 	if is_on_floor():
-		IsJump = true
+		Velocity.y = JumpImpulse
