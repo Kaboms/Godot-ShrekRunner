@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody",
-"class": "ShrekCharacter",
+"class": "Player",
 "language": "GDScript",
-"path": "res://Characters/Shrek.gd"
+"path": "res://Characters/Player.gd"
 } ]
 _global_script_class_icons={
-"ShrekCharacter": ""
+"Player": ""
 }
 
 [application]
@@ -80,11 +80,9 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-quality/depth_prepass/enable=false
 quality/filters/use_nearest_mipmap_filter=true
 quality/skinning/software_skinning_fallback=false
 quality/skinning/force_software_skinning=true
 gles2/compatibility/disable_half_float=true
 batching/precision/uv_contract=true
-quality/spatial_partitioning/use_bvh=false
 environment/default_environment="res://default_env.tres"
