@@ -21,8 +21,8 @@ export(int) var Speed = 3
 export(int) var StrafeSpeed = 6
 export(int) var StrafeDistance = 1.5
 
-export var JumpImpulse = 15
-export var Gravity = -1
+export var JumpImpulse = 10
+export var Gravity = -0.5
 
 var Velocity: Vector3 = Vector3.ZERO
 
@@ -75,29 +75,29 @@ func _physics_process(delta):
 func HandleMovement():
 	Velocity.z = 0
 	Velocity.x = 0
-	
-	if !IsDeath && IsGameStarted:
-		Velocity.z = Speed
-		
-		if StrafeDirection != 0:
-			DistanceToRoad = (Roads[MoveRoad] - transform.origin.x) * StrafeDirection 
-			if DistanceToRoad >= 0:
-				Velocity.x = StrafeSpeed * StrafeDirection
-			else:
-				StrafeDirection = 0
-			
-	Velocity.y += Gravity
 
-	if !is_on_floor():
-		IsFall = true
-		## If we jump animation will be controlled by jump
-		if !IsJump:
-			$AnimationPlayer.PlayFall()
-		
-	if IsFall && is_on_floor():
-		IsFall = false
-		IsJump = false
-		Landed()
+	if !IsDeath:
+		if IsGameStarted:
+			Velocity.z = Speed
+			
+			if StrafeDirection != 0:
+				DistanceToRoad = (Roads[MoveRoad] - transform.origin.x) * StrafeDirection 
+				if DistanceToRoad >= 0:
+					Velocity.x = StrafeSpeed * StrafeDirection
+				else:
+					StrafeDirection = 0
+		if !is_on_floor():
+			IsFall = true
+			## If we jump animation will be controlled by jump
+			if !IsJump:
+				$AnimationPlayer.PlayFall()
+			
+		if IsFall && is_on_floor():
+			IsFall = false
+			IsJump = false
+			Landed()
+
+	Velocity.y += Gravity
 
 	Velocity = move_and_slide(Velocity,  Vector3.UP)
 
