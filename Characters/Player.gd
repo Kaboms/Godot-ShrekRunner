@@ -17,7 +17,7 @@ var IsDeath: bool = false
 var IsGameStarted: bool = false
 
 ### MOVEMENT
-export(int) var Speed = 3
+export(int) var Speed = 4
 export(int) var StrafeSpeed = 6
 export(int) var StrafeDistance = 1.5
 
@@ -118,7 +118,7 @@ func StrafeTo(NewStrafeDirection):
 	MoveRoad += StrafeDirection
 
 func StartGame():
-	get_node("../Outdoor").get_node("AnimationPlayer").play("Open")	
+	get_node("../StartPosition/Outdoor").get_node("AnimationPlayer").play("Open")
 	yield(get_tree().create_timer(0.25), "timeout")
 
 	IsGameStarted = true

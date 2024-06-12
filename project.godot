@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "LevelSequence",
+"language": "GDScript",
+"path": "res://Scripts/LevelSequence.gd"
+}, {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Characters/Player.gd"
 } ]
 _global_script_class_icons={
+"LevelSequence": "",
 "Player": ""
 }
 

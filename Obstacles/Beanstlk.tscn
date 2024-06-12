@@ -6,12 +6,13 @@
 extents = Vector3( 0.43659, 0.942116, 1.51737 )
 
 [node name="Beanstlk" type="StaticBody"]
-transform = Transform( 1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0.322743, 7 )
+transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, 0, 0, 0 )
 collision_layer = 4
 collision_mask = 4
 
-[node name="Beanstlk_HayShape" type="Spatial" parent="." instance=ExtResource( 1 )]
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.00472, 0, 0, 0, 0.195054, 0, 0, 0, 0.194045, 0, 0.151257, 0.0611019 )
+transform = Transform( 1.00472, 0, 0, 0, 0.195054, 0, 0, 8.88178e-16, 0.194045, 0, 0.151257, 0.0611019 )
 shape = SubResource( 3 )
+
+[node name="Beanstlk_HayShape" parent="CollisionShape" instance=ExtResource( 1 )]
+transform = Transform( 0.995302, 0, 0, 0, 5.12679, 0, 0, 0, 5.15344, 0, -0.775461, -0.314885 )

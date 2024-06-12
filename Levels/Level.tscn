@@ -2,69 +2,65 @@
 
 [ext_resource path="res://Meshes/Environment/Outdoor/Outdoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Shrek.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Shaders/M_Grid.tres" type="Material" id=3]
+[ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/StartPosition.gd" type="Script" id=4]
 [ext_resource path="res://Meshes/Landscape/StartLandscape/StartPosition.glb" type="PackedScene" id=5]
 [ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=6]
 [ext_resource path="res://Meshes/Environment/Foliage/GrassTall/GrassTall.glb" type="PackedScene" id=7]
 [ext_resource path="res://Meshes/Environment/Trees/Tree_01.glb" type="PackedScene" id=8]
-
-[sub_resource type="BoxShape" id=1]
-
-[sub_resource type="CubeMesh" id=2]
+[ext_resource path="res://Scripts/LevelManager.gd" type="Script" id=9]
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0237476, 0.00306666, 0.000374317 )
-
-[node name="Outdoor" parent="." instance=ExtResource( 1 )]
+script = ExtResource( 9 )
 
 [node name="Shrek" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0286312, 0 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 4.42501, 0, 0, 0, 1, 0, 0, 0, 39.4198, 0, -0.967232, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155955, 0 )
-mesh = SubResource( 2 )
-material/0 = ExtResource( 3 )
-
 [node name="StartPosition" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262814, 0.0164624, 0.372154 )
+script = ExtResource( 4 )
 
-[node name="Foliage" type="Node" parent="."]
+[node name="Foliage" type="Spatial" parent="StartPosition"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262814, -0.0164624, -0.372154 )
 
-[node name="GrassTall" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 0.585202, 0, 0, 0, 0.585202, 0, 0, 0, 0.585202, -0.568453, 0.0359395, 0.240535 )
 
-[node name="GrassTall2" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall2" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.568453, 0.0359395, -0.101121 )
 
-[node name="GrassTall3" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall3" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 0.680146, 0, 0, 0, 0.680146, 0, 0, 0, 0.680146, -0.78613, 0.0359395, 0.101464 )
 
-[node name="GrassTall4" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall4" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 0.464017, 0, -0.35658, 0, 0.585202, 0, 0.35658, 0, 0.464017, 0.820136, 0.0359395, 0.520791 )
 
-[node name="GrassTall5" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall5" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 0.792917, 0, -0.609329, 0, 1, 0, 0.609329, 0, 0.792917, 1.02832, 0.0359395, 0.249885 )
 
-[node name="GrassTall6" parent="Foliage" instance=ExtResource( 7 )]
+[node name="GrassTall6" parent="StartPosition/Foliage" instance=ExtResource( 7 )]
 transform = Transform( 0.5393, 0, -0.414433, 0, 0.680146, 0, 0.414433, 0, 0.5393, 0.732275, 0.0359395, 0.277882 )
 
-[node name="Bush" parent="Foliage" instance=ExtResource( 6 )]
+[node name="Bush" parent="StartPosition/Foliage" instance=ExtResource( 6 )]
 transform = Transform( -1.63015, 0, -0.636454, 0, 1.74999, 0, 0.636454, 0, -1.63015, -0.367057, 0.0359392, -1.96531 )
 
-[node name="Bush2" parent="Foliage" instance=ExtResource( 6 )]
+[node name="Bush2" parent="StartPosition/Foliage" instance=ExtResource( 6 )]
 transform = Transform( -0.535777, 0, 1.66595, 0, 1.74999, 0, -1.66595, 0, -0.535777, 3.3331, 0.47846, -2.62763 )
 
-[node name="Tree_01" parent="Foliage" instance=ExtResource( 8 )]
+[node name="Tree_01" parent="StartPosition/Foliage" instance=ExtResource( 8 )]
 transform = Transform( -0.103118, 0, 0.320638, 0, 0.336811, 0, -0.320638, 0, -0.103118, -0.353389, 0.0360184, -4.07954 )
 
-[node name="Tree_02" parent="Foliage" instance=ExtResource( 8 )]
+[node name="Tree_02" parent="StartPosition/Foliage" instance=ExtResource( 8 )]
 transform = Transform( -0.396176, 0, 0.339085, 0, 0.521473, 0, -0.339085, 0, -0.396176, 2.88321, -0.507821, -4.75024 )
 
-[node name="Tree_03" parent="Foliage" instance=ExtResource( 8 )]
+[node name="Tree_03" parent="StartPosition/Foliage" instance=ExtResource( 8 )]
 transform = Transform( -0.396176, 0, 0.339085, 0, 0.521473, 0, -0.339085, 0, -0.396176, 6.41837, -0.391343, 1.70605 )
+
+[node name="StaticBody" parent="StartPosition" instance=ExtResource( 3 )]
+transform = Transform( 4.06096, 0, 0, 0, 1, 0, 0, 0, 5.51206, 0.263, -1, 0 )
+
+[node name="Outdoor" parent="StartPosition" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262814, -0.0164624, -0.372154 )
+
+[connection signal="StartGame" from="Shrek" to="StartPosition" method="_on_Shrek_StartGame"]
