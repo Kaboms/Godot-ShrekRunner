@@ -10,16 +10,22 @@ signal Down
 
 signal Death
 
+signal AddCoin
+
 signal StartGame
 ###
 
 var IsDeath: bool = false
 var IsGameStarted: bool = false
 
+var Coins = 0
+
 ### MOVEMENT
-export(int) var Speed = 4
+export(float) var SpeedIncreaseDelta = 0.005
+export(float) var Speed = 4.5
+export(int) var MaxSpeed = 8
 export(int) var StrafeSpeed = 6
-export(int) var StrafeDistance = 1.5
+export(float) var StrafeDistance = 1.5
 
 export var JumpImpulse = 10
 export var Gravity = -0.5
@@ -46,7 +52,9 @@ var ForwardVector
 ### CAMERA
 var MoveCameraDelay = 0.3
 var MoveCamera = false
-export var CameraSpeed = 3
+export var CameraSpeed = 0.1
+var MoveCameraWeight = 0
+
 ###
 
 ### Mouse Control
@@ -54,14 +62,24 @@ var ClickPosition: Vector2 = Vector2.ZERO
 export var MouseMoveDeathzone = 0.05
 ###
 
+var ActivateInputDelay = 1
+var InputEnabled = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ForwardVector = get_global_transform().basis
 	$AnimationPlayer.Character = $"."
-	
-func _physics_process(delta):
-	HandleMovement()
+
+func _process(delta):
 	HandleCameraSetup(delta)
+	
+	if IsGameStarted && !InputEnabled:
+		ActivateInputDelay -= delta
+		if ActivateInputDelay <= 0:
+			InputEnabled = true
+
+func _physics_process(delta):
+	HandleMovement(delta)
 	
 	if get_slide_count() > 0:
 		for i in get_slide_count():
@@ -69,15 +87,17 @@ func _physics_process(delta):
 			var collider = collision.collider
 			if (collider.get_collision_layer_bit(2)) && collision.normal.z < -0.5:
 				Death()
-				move_and_slide(Vector3.ZERO, Vector3.UP)
+				Velocity = move_and_slide(Vector3.ZERO, Vector3.UP)
 				break
 
-func HandleMovement():
+func HandleMovement(delta):
 	Velocity.z = 0
 	Velocity.x = 0
 
 	if !IsDeath:
 		if IsGameStarted:
+			if Speed < MaxSpeed:
+				Speed += SpeedIncreaseDelta * delta
 			Velocity.z = Speed
 			
 			if StrafeDirection != 0:
@@ -85,6 +105,7 @@ func HandleMovement():
 				if DistanceToRoad >= 0:
 					Velocity.x = StrafeSpeed * StrafeDirection
 				else:
+					transform.origin.x = Roads[MoveRoad]
 					StrafeDirection = 0
 		if !is_on_floor():
 			IsFall = true
@@ -105,10 +126,14 @@ func HandleCameraSetup(delta):
 	if MoveCamera:
 		MoveCameraDelay -= delta
 		if MoveCameraDelay <= 0:
-			var MoveCameraWeight = CameraSpeed * delta
+			MoveCameraWeight += CameraSpeed * delta
+			MoveCameraWeight = clamp(MoveCameraWeight, 0, 1)
 			$Camera.transform.origin = lerp($Camera.transform.origin, $CameraPoint.transform.origin, MoveCameraWeight)
 			$Camera.rotation.y = lerp_angle($Camera.rotation.y, $CameraPoint.rotation.y, MoveCameraWeight)
 			$Camera.rotation.x = lerp_angle($Camera.rotation.x, $CameraPoint.rotation.x, MoveCameraWeight)
+			
+			if MoveCameraWeight == 1:
+				MoveCamera = false
 
 func StrafeTo(NewStrafeDirection):
 	if !Roads.has(MoveRoad + NewStrafeDirection) || abs(DistanceToRoad) >= 0.25:
@@ -118,6 +143,8 @@ func StrafeTo(NewStrafeDirection):
 	MoveRoad += StrafeDirection
 
 func StartGame():
+	if IsGameStarted: return
+	
 	get_node("../StartPosition/Outdoor").get_node("AnimationPlayer").play("Open")
 	yield(get_tree().create_timer(0.25), "timeout")
 
@@ -145,8 +172,19 @@ func Jump():
 		emit_signal("Jump")
 		
 func _input(event):
-	if !event.is_action_type(): return
+	if (event is InputEventMouseButton && event.pressed) || event.is_action_pressed("Jump"):
+		if !IsGameStarted:
+			StartGame()
+			return
+		elif IsDeath:
+			get_node("/root/Main").Restart()
 
+	if !event.is_action_type() || !InputEnabled: return
+
+	SwipeControl(event)
+	KeyboardControl(event)
+
+func SwipeControl(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			ClickPosition = event.position
@@ -162,13 +200,8 @@ func _input(event):
 				else:
 					if swipeDirection.y < 0:
 						Jump()
-		
-	if !IsGameStarted:
-		StartGame()
 
-	if IsDeath:
-		get_tree().reload_current_scene()
-
+func KeyboardControl(event):
 	if event.is_action_pressed("Left"):
 		MoveLeft()
 	if event.is_action_pressed("Right"):
@@ -179,6 +212,8 @@ func _input(event):
 		emit_signal("Down")
 
 func Death():
+	if IsDeath: return
+	
 	IsDeath = true
 	$AnimationPlayer.PlayDeath()
 
@@ -190,3 +225,7 @@ func Landed():
 	if IsDeath: return
 
 	$AnimationPlayer.PlayLanded()
+
+func AddCoin():
+	Coins += 1
+	emit_signal("AddCoin")

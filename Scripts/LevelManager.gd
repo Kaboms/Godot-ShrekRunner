@@ -5,7 +5,6 @@ var Levels = [
 	preload("res://Levels/Chunks/Swamp/Swamp_01.tscn"),
 	preload("res://Levels/Chunks/Swamp/Swamp_02.tscn"),
 	preload("res://Levels/Chunks/Swamp/Swamp_02.tscn"),
-	preload("res://Levels/Chunks/Swamp/Swamp_02.tscn")
 ]
 
 var LevelInstances = []
@@ -38,7 +37,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if $Shrek.transform.origin.z >= OffsetToUpdate:
-		print($Shrek.transform.origin.z)
 		LevelInstances[0].queue_free()
 		LevelInstances.remove(0)
 

@@ -11,7 +11,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.00472, 0, 0, 0, 0.195054, 0, 0, 8.88178e-16, 0.194045, 0, 0.151257, 0.0611019 )
+transform = Transform( 1.00472, 0, 0, 0, 0.195054, -7.94093e-23, 0, 8.88178e-16, 0.194045, 0, 0.151, 0.3 )
 shape = SubResource( 3 )
 
 [node name="Beanstlk_HayShape" parent="CollisionShape" instance=ExtResource( 1 )]

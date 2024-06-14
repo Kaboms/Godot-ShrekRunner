@@ -7,4 +7,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Area_body_entered(body):
+	if body is Player:
+		body.AddCoin()
 	queue_free()
