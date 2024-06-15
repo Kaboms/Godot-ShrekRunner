@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Meshes/Obstacles/Log/Log.glb" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Environment/Foliage/GrassTallFlowers/grass_tall_flowers.glb" type="PackedScene" id=2]
+[ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.28344, 0.322398, 0.276445 )
+
+[node name="Log" type="StaticBody"]
+transform = Transform( -5.33279e-08, 0, -1.22, 0, 1.22, 0, 1.22, 0, -5.33279e-08, 0, 0, 0 )
+collision_layer = 5
+collision_mask = 5
+
+[node name="grass_tall_flowers" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20009, 0, 0.119496 )
+
+[node name="grass_tall_flowers2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4355, 0, 0.102692 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0674539, 0.243541, 0.0281045 )
+shape = SubResource( 1 )
+
+[node name="Log" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0 )
+
+[node name="flower_patch_blue" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.490011, 0, 0, 0, 0.490011, 0, 0, 0, 0.490011, 0, 0, 0.0184374 )

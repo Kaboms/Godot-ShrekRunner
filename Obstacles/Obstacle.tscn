@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Obstacles/Obstacle.gd" type="Script" id=1]
+[ext_resource path="res://Obstacles/Beanstlk.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Obstacles/BlockFrame.tscn" type="PackedScene" id=3]
 
 [node name="Obstacle" type="Spatial"]
 script = ExtResource( 1 )
+Obctacles = [ ExtResource( 2 ), ExtResource( 3 ) ]

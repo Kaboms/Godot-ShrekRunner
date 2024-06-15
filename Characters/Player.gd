@@ -15,6 +15,7 @@ signal AddCoin
 signal StartGame
 ###
 
+var DeathTimeout = 1
 var IsDeath: bool = false
 var IsGameStarted: bool = false
 
@@ -94,6 +95,9 @@ func HandleMovement(delta):
 	Velocity.z = 0
 	Velocity.x = 0
 
+	if IsDeath && DeathTimeout > 0:
+		DeathTimeout -= delta
+
 	if !IsDeath:
 		if IsGameStarted:
 			if Speed < MaxSpeed:
@@ -165,7 +169,7 @@ func MoveRight():
 	emit_signal("MoveRight")
 
 func Jump():
-	if is_on_floor():
+	if is_on_floor() && !IsDeath:
 		$AnimationPlayer.PlayJump()
 		Velocity.y = JumpImpulse
 		IsJump = true
@@ -176,7 +180,7 @@ func _input(event):
 		if !IsGameStarted:
 			StartGame()
 			return
-		elif IsDeath:
+		elif IsDeath &&  DeathTimeout <= 0:
 			get_node("/root/Main").Restart()
 
 	if !event.is_action_type() || !InputEnabled: return

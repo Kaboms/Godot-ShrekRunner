@@ -3,7 +3,7 @@
 [ext_resource path="res://Meshes/Obstacles/Benstlk/Beanstlk_HayShape.gltf" type="PackedScene" id=1]
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.43659, 0.942116, 1.51737 )
+extents = Vector3( 0.43659, 0.258986, 1.51737 )
 
 [node name="Beanstlk" type="StaticBody"]
 transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, 0, 0, 0 )
@@ -11,8 +11,8 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.00472, 0, 0, 0, 0.195054, -7.94093e-23, 0, 8.88178e-16, 0.194045, 0, 0.151, 0.3 )
+transform = Transform( 1.00472, 0, 0, 0, 0.195054, -1.32349e-22, 0, 8.88178e-16, 0.194045, 4.1836e-09, 0.0552903, 0.3 )
 shape = SubResource( 3 )
 
-[node name="Beanstlk_HayShape" parent="CollisionShape" instance=ExtResource( 1 )]
-transform = Transform( 0.995302, 0, 0, 0, 5.12679, 0, 0, 0, 5.15344, 0, -0.775461, -0.314885 )
+[node name="Beanstlk_HayShape" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 3.55271e-15, 0, 0, 1, -4.23516e-22, 0, 4.5535e-15, 0.999999, 8.88178e-16, -0.000256777, 0.238898 )

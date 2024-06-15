@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Meshes/Environment/Outdoor/Outdoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Shrek.tscn" type="PackedScene" id=2]
@@ -7,12 +7,18 @@
 [ext_resource path="res://Meshes/Landscape/StartLandscape/StartPosition.glb" type="PackedScene" id=5]
 [ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=6]
 [ext_resource path="res://Meshes/Environment/Foliage/GrassTall/GrassTall.glb" type="PackedScene" id=7]
-[ext_resource path="res://Meshes/Environment/Trees/Tree_01.glb" type="PackedScene" id=8]
+[ext_resource path="res://Meshes/Environment/Trees/Tree_01/Tree_01.glb" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/LevelManager.gd" type="Script" id=9]
 [ext_resource path="res://UI/FpsCounter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://UI/Images/Coin.png" type="Texture" id=11]
 [ext_resource path="res://Fonts/Oswald/Oswald-SemiBold.ttf" type="DynamicFontData" id=12]
-[ext_resource path="res://Levels/CoinsCounter.gd" type="Script" id=13]
+[ext_resource path="res://UI/CoinsCounter.gd" type="Script" id=13]
+[ext_resource path="res://Meshes/Environment/Foliage/GrassTallFlowers/grass_tall_flowers.glb" type="PackedScene" id=14]
+[ext_resource path="res://Meshes/Environment/Trees/Tree_03/tree_2.glb" type="PackedScene" id=15]
+[ext_resource path="res://Levels/Chunks/Swamp/Swamp_01.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/Chunks/Swamp/Swamp_03.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Levels/Chunks/Swamp/Swamp_02.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Levels/Chunks/Swamp/Swamp_04.tscn" type="PackedScene" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -20,12 +26,14 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0237476, 0.00306666, 0.000374317 )
 script = ExtResource( 9 )
+Levels = [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 19 ) ]
 
 [node name="Shrek" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0286312, 0 )
+Speed = 5.0
 
 [node name="StartPosition" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262814, 0.0164624, 0.372154 )
@@ -61,6 +69,9 @@ transform = Transform( -0.535777, 0, 1.66595, 0, 1.74999, 0, -1.66595, 0, -0.535
 [node name="Bush3" parent="StartPosition/Foliage" instance=ExtResource( 6 )]
 transform = Transform( 1.46856, 0, 0.951727, 0, 1.74999, 0, -0.951727, 0, 1.46856, 3.17631, 0.169147, 0.371297 )
 
+[node name="Bush5" parent="StartPosition/Foliage" instance=ExtResource( 6 )]
+transform = Transform( 0.76632, 0, 1.57328, 0, 1.74999, 0, -1.57328, 0, 0.76632, -2.22187, -0.0618593, -0.558417 )
+
 [node name="Bush4" parent="StartPosition/Foliage" instance=ExtResource( 6 )]
 transform = Transform( 0.286969, 0, 1.07942, 0, 1.11692, 0, -1.07942, 0, 0.286969, 2.33977, 0.169147, -1.02766 )
 
@@ -72,6 +83,15 @@ transform = Transform( -0.396176, 0, 0.339085, 0, 0.521473, 0, -0.339085, 0, -0.
 
 [node name="Tree_03" parent="StartPosition/Foliage" instance=ExtResource( 8 )]
 transform = Transform( -0.396176, 0, 0.339085, 0, 0.521473, 0, -0.339085, 0, -0.396176, 6.41837, -0.391343, 1.70605 )
+
+[node name="grass_tall_flowers" parent="StartPosition/Foliage" instance=ExtResource( 14 )]
+transform = Transform( -0.325497, 0, 0.74383, 0, 0.811931, 0, -0.74383, 0, -0.325497, 1.05236, 0.0164635, 0.539958 )
+
+[node name="grass_tall_flowers2" parent="StartPosition/Foliage" instance=ExtResource( 14 )]
+transform = Transform( -0.368932, -0.120662, 0.713135, -0.0912472, 0.801921, 0.0884786, -0.717492, -0.0399406, -0.377944, -0.520392, -0.17928, 0.410984 )
+
+[node name="tree_2" parent="StartPosition/Foliage" instance=ExtResource( 15 )]
+transform = Transform( 0.619505, 0, -0.226253, 0, 0.659528, 0, 0.226253, 0, 0.619505, 3.78891, -0.0295504, -0.637394 )
 
 [node name="StaticBody" parent="StartPosition" instance=ExtResource( 3 )]
 transform = Transform( 4.06096, 0, 0, 0, 1, 0, 0, 0, 5.51206, 0.263, -1, 0 )
