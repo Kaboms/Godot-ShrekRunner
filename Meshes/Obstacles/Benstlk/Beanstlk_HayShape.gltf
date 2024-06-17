@@ -1,112 +1,120 @@
 {
-  "asset" : {
-    "generator" : "UE Viewer (umodel) build (unversioned)",
-    "version" : "2.0"
-  },
-  "scene" : 0,
-  "scenes" : [
-    {
-      "nodes" : [ 0 ]
-    }
-  ],
-  "nodes" : [
-    {
-      "name" : "Beanstlk_HayShape",
-      "mesh" : 0
-    }
-  ],
-  "materials" : [
-    {
-      "name" : "beans_hay",
-      "pbrMetallicRoughness" : {
-        "baseColorFactor" : [ 0.3, 0.3, 0.3, 1.0 ],
-        "metallicFactor" : 0.1,
-        "roughnessFactor" : 0.5
-      }
-    }
-  ],
-  "meshes" : [
-    {
-      "primitives" : [
-        {
-          "attributes" : {
-            "POSITION" : 1,
-            "NORMAL" : 2,
-            "TANGENT" : 3,
-            "TEXCOORD_0" : 4
-          },
-          "indices" : 0,
-          "material" : 0
-        }
-      ],
-      "name" : "Beanstlk_HayShape"
-    }
-  ],
-  "buffers" : [
-    {
-      "uri" : "Beanstlk_HayShape.bin",
-      "byteLength" : 4344
-    }
-  ],
-  "bufferViews" : [
-    {
-      "buffer" : 0,
-      "byteOffset" : 0,
-      "byteLength" : 408
-    },
-    {
-      "buffer" : 0,
-      "byteOffset" : 408,
-      "byteLength" : 984
-    },
-    {
-      "buffer" : 0,
-      "byteOffset" : 1392,
-      "byteLength" : 984
-    },
-    {
-      "buffer" : 0,
-      "byteOffset" : 2376,
-      "byteLength" : 1312
-    },
-    {
-      "buffer" : 0,
-      "byteOffset" : 3688,
-      "byteLength" : 656
-    }
-  ],
-  "accessors" : [
-    {
-      "bufferView" : 0,
-      "componentType" : 5123,
-      "count" : 204,
-      "type" : "SCALAR"
-    },
-    {
-      "bufferView" : 1,
-      "min" : [ -0.415119, -0.0149657, -0.229453 ],
-      "max" : [ 0.415119, 0.334144, 0.343097 ],
-      "componentType" : 5126,
-      "count" : 82,
-      "type" : "VEC3"
-    },
-    {
-      "bufferView" : 2,
-      "componentType" : 5126,
-      "count" : 82,
-      "type" : "VEC3"
-    },
-    {
-      "bufferView" : 3,
-      "componentType" : 5126,
-      "count" : 82,
-      "type" : "VEC4"
-    },
-    {
-      "bufferView" : 4,
-      "componentType" : 5126,
-      "count" : 82,
-      "type" : "VEC2"
-    }
-  ]
+	"asset":{
+		"generator":"Khronos glTF Blender I/O v4.1.63",
+		"version":"2.0"
+	},
+	"scene":0,
+	"scenes":[
+		{
+			"name":"Scene",
+			"nodes":[
+				0
+			]
+		}
+	],
+	"nodes":[
+		{
+			"mesh":0,
+			"name":"Beanstlk_HayShape"
+		}
+	],
+	"materials":[
+		{
+			"name":"beans_hay",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.30000001192092896,
+					0.30000001192092896,
+					0.30000001192092896,
+					1
+				],
+				"metallicFactor":0.10000000149011612,
+				"roughnessFactor":0.5
+			}
+		}
+	],
+	"meshes":[
+		{
+			"name":"Beanstlk_HayShape",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":0,
+						"NORMAL":1,
+						"TEXCOORD_0":2
+					},
+					"indices":3,
+					"material":0
+				}
+			]
+		}
+	],
+	"accessors":[
+		{
+			"bufferView":0,
+			"componentType":5126,
+			"count":58,
+			"max":[
+				0.4151191711425781,
+				0.3341437578201294,
+				0.3430967628955841
+			],
+			"min":[
+				-0.4151192009449005,
+				-0.014965689741075039,
+				-0.22945281863212585
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":1,
+			"componentType":5126,
+			"count":58,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":2,
+			"componentType":5126,
+			"count":58,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":3,
+			"componentType":5123,
+			"count":132,
+			"type":"SCALAR"
+		}
+	],
+	"bufferViews":[
+		{
+			"buffer":0,
+			"byteLength":696,
+			"byteOffset":0,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":696,
+			"byteOffset":696,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":464,
+			"byteOffset":1392,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":264,
+			"byteOffset":1856,
+			"target":34963
+		}
+	],
+	"buffers":[
+		{
+			"byteLength":2120,
+			"uri":"Beanstlk_HayShape.bin"
+		}
+	]
 }

@@ -23,7 +23,7 @@ var Coins = 0
 
 ### MOVEMENT
 export(float) var SpeedIncreaseDelta = 0.005
-export(float) var Speed = 4.5
+export(float) var Speed = 4.75
 export(int) var MaxSpeed = 8
 export(int) var StrafeSpeed = 6
 export(float) var StrafeDistance = 1.5
@@ -37,8 +37,14 @@ var StrafeDirection = 0
 var MoveRoad = 0
 var DistanceToRoad = 0
 
+var MinFallTimeout = 0.25
+var FallTime = 0
 var IsFall = false
 var IsJump = false
+
+var IsRoll = false
+var RollDistance = 4
+var RollStartPosZ = 0
 
 # KISS
 var Roads = {
@@ -53,7 +59,7 @@ var ForwardVector
 ### CAMERA
 var MoveCameraDelay = 0.3
 var MoveCamera = false
-export var CameraSpeed = 0.1
+export var CameraSmooth = 0.02
 var MoveCameraWeight = 0
 
 ###
@@ -65,6 +71,18 @@ export var MouseMoveDeathzone = 0.05
 
 var ActivateInputDelay = 1
 var InputEnabled = false
+
+### AUDIO
+var CoinPickupSound = [
+	preload("res://Audio/SFX_PickupCoin_01.WAV"),
+	preload("res://Audio/SFX_PickupCoin_02.WAV"),
+	preload("res://Audio/SFX_PickupCoin_04.WAV")
+]
+
+var CurrentCoinPickupSound = 0
+###
+
+var IsRestart = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,6 +99,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	HandleMovement(delta)
+	HandleRoll(delta)
 	
 	if get_slide_count() > 0:
 		for i in get_slide_count():
@@ -111,26 +130,38 @@ func HandleMovement(delta):
 				else:
 					transform.origin.x = Roads[MoveRoad]
 					StrafeDirection = 0
-		if !is_on_floor():
-			IsFall = true
-			## If we jump animation will be controlled by jump
-			if !IsJump:
-				$AnimationPlayer.PlayFall()
-			
-		if IsFall && is_on_floor():
-			IsFall = false
-			IsJump = false
-			Landed()
+		if !IsRoll:
+			if !is_on_floor():
+				FallTime += delta
+				if FallTime > MinFallTimeout:
+					IsFall = true
+					## If we jump animation will be controlled by jump
+					if !IsJump:
+						$AnimationPlayer.PlayFall()
+
+			if FallTime != 0 && is_on_floor():
+				FallTime = 0
+
+			if IsFall && is_on_floor():
+				IsFall = false
+				IsJump = false
+				Landed()
 
 	Velocity.y += Gravity
 
 	Velocity = move_and_slide(Velocity,  Vector3.UP)
 
+func HandleRoll(delta):
+	if IsRoll:
+		if  transform.origin.z - RollStartPosZ > RollDistance:
+			SetIsRoll(false)
+			$AnimationPlayer.PlayRollUp()
+
 func HandleCameraSetup(delta):
 	if MoveCamera:
 		MoveCameraDelay -= delta
 		if MoveCameraDelay <= 0:
-			MoveCameraWeight += CameraSpeed * delta
+			MoveCameraWeight = 1 - pow(CameraSmooth, delta)
 			MoveCameraWeight = clamp(MoveCameraWeight, 0, 1)
 			$Camera.transform.origin = lerp($Camera.transform.origin, $CameraPoint.transform.origin, MoveCameraWeight)
 			$Camera.rotation.y = lerp_angle($Camera.rotation.y, $CameraPoint.rotation.y, MoveCameraWeight)
@@ -140,7 +171,7 @@ func HandleCameraSetup(delta):
 				MoveCamera = false
 
 func StrafeTo(NewStrafeDirection):
-	if !Roads.has(MoveRoad + NewStrafeDirection) || abs(DistanceToRoad) >= 0.25:
+	if !Roads.has(MoveRoad + NewStrafeDirection) || abs(DistanceToRoad) >= 0.5:
 		return
 
 	StrafeDirection = NewStrafeDirection
@@ -169,18 +200,30 @@ func MoveRight():
 	emit_signal("MoveRight")
 
 func Jump():
-	if is_on_floor() && !IsDeath:
+	if !IsRoll && is_on_floor() && !IsDeath:
 		$AnimationPlayer.PlayJump()
 		Velocity.y = JumpImpulse
 		IsJump = true
 		emit_signal("Jump")
-		
+
+func Roll():
+	if !IsRoll && is_on_floor() && !IsDeath:
+		$AnimationPlayer.PlayRoll()
+		RollStartPosZ = transform.origin.z
+		SetIsRoll(true)
+		emit_signal("Down")
+
+func SetIsRoll(InIsRoll: bool):
+	IsRoll = InIsRoll
+	$CapsuleCollision.disabled = IsRoll
+
 func _input(event):
 	if (event is InputEventMouseButton && event.pressed) || event.is_action_pressed("Jump"):
 		if !IsGameStarted:
 			StartGame()
 			return
-		elif IsDeath &&  DeathTimeout <= 0:
+		elif !IsRestart && IsDeath && DeathTimeout <= 0:
+			IsRestart = true
 			get_node("/root/Main").Restart()
 
 	if !event.is_action_type() || !InputEnabled: return
@@ -204,6 +247,8 @@ func SwipeControl(event):
 				else:
 					if swipeDirection.y < 0:
 						Jump()
+					if swipeDirection.y > 0:
+						Roll()
 
 func KeyboardControl(event):
 	if event.is_action_pressed("Left"):
@@ -213,7 +258,7 @@ func KeyboardControl(event):
 	if event.is_action_pressed("Jump"):
 		Jump()
 	if event.is_action_pressed("Down"):
-		emit_signal("Down")
+		Roll()
 
 func Death():
 	if IsDeath: return
@@ -231,5 +276,10 @@ func Landed():
 	$AnimationPlayer.PlayLanded()
 
 func AddCoin():
+	$AudioStreamPlayer.stream = CoinPickupSound[CurrentCoinPickupSound]
+	$AudioStreamPlayer.play()
+	CurrentCoinPickupSound += 1
+	if CurrentCoinPickupSound >= CoinPickupSound.size():
+		CurrentCoinPickupSound = 0
 	Coins += 1
 	emit_signal("AddCoin")

@@ -3,9 +3,10 @@ extends AnimationPlayer
 var Character: Player
 
 func _ready():
-	get_animation("Idle").set_loop(true)	
+	get_animation("Idle").set_loop(true)
 	get_animation("run").set_loop(true)
 	get_animation("jumploop").set_loop(true)
+	get_animation("Roll_Idle").set_loop(true)
 	
 	set_blend_time("jumplandtorun", "run", 0.15)
 	set_blend_time("Idle", "run", 0.15)
@@ -34,3 +35,12 @@ func PlayLanded():
 		queue("run")
 	else:
 		play("Idle")
+
+func PlayRoll():
+	play("Rolldown")
+	queue("Roll_Idle")
+	
+func PlayRollUp():
+	play("RollUp")
+	queue("run")
+	

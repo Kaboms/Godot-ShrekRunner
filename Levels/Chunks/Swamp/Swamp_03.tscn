@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Items/Coins/Coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Obstacles/Obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
 [ext_resource path="res://Meshes/Landscape/SwampLandscape/Landscape.glb" type="PackedScene" id=5]
-[ext_resource path="res://Meshes/Environment/Trees/Tree_01/Tree_01.glb" type="PackedScene" id=6]
 [ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=7]
 [ext_resource path="res://Meshes/Environment/Trees/Tree_03/tree_2.glb" type="PackedScene" id=8]
 [ext_resource path="res://Meshes/Environment/Foliage/GrassTallFlowers/grass_tall_flowers.glb" type="PackedScene" id=9]
@@ -21,7 +20,6 @@ LevelLenght = 24
 
 [node name="DebugCube" parent="." instance=ExtResource( 2 )]
 transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
-visible = false
 
 [node name="Landscape" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.40808e-08, 0, 1.62344, 0, 1.00845, 0, -1.00845, 0, -7.0963e-08, 0, 0, 0 )
@@ -30,15 +28,6 @@ transform = Transform( -4.40808e-08, 0, 1.62344, 0, 1.00845, 0, -1.00845, 0, -7.
 
 [node name="tree_2" parent="Foliage" instance=ExtResource( 8 )]
 transform = Transform( 0.454103, -0.300881, -0.838606, 0.248909, 0.946616, -0.204849, 0.855473, -0.115714, 0.504753, -7.8037, 0.311122, 6.14232 )
-
-[node name="Tree_01" parent="Foliage" instance=ExtResource( 6 )]
-transform = Transform( 0.81882, 0, 0, 0, 0.81882, 0, 0, 0, 0.81882, 4.76209, 0.324098, -6.16291 )
-
-[node name="Tree_02" parent="Foliage" instance=ExtResource( 6 )]
-transform = Transform( 0.81882, 8.84462e-10, -1.09317e-11, -8.84462e-10, 0.81857, -0.0202341, -1.09281e-11, 0.0202341, 0.81857, -9.74281, 0.052346, -5.74548 )
-
-[node name="Tree_03" parent="Foliage" instance=ExtResource( 6 )]
-transform = Transform( 0.81882, -2.64624e-09, -9.7959e-11, 2.64624e-09, 0.816579, 0.060539, -9.7959e-11, -0.060539, 0.816579, 7.25719, 0.801899, 6.42403 )
 
 [node name="grass_tall_flowers" parent="Foliage" instance=ExtResource( 9 )]
 transform = Transform( 1.78635, 0, 0, 0, 1.78635, 0, 0, 0, 1.78635, 3.84797, 0.133061, 4.3386 )
@@ -58,11 +47,14 @@ transform = Transform( 1.78635, -1.92985e-08, -2.4224e-09, 1.92985e-08, 1.73093,
 [node name="flower_patch_blue" parent="Foliage" instance=ExtResource( 7 )]
 transform = Transform( 1, -2.22154e-08, -6.06621e-09, 2.22154e-08, 0.861221, 0.50823, -6.06621e-09, -0.50823, 0.861221, -2.61429, 1.15917, 5.32462 )
 
+[node name="flower_patch_blue2" parent="Foliage" instance=ExtResource( 7 )]
+transform = Transform( 1, -1.69959e-08, 1.5539e-08, 2.22154e-08, 0.889711, -0.456523, -6.06621e-09, 0.456523, 0.889711, -2.61429, 1.04406, -5.01487 )
+
 [node name="Bush" parent="Foliage" instance=ExtResource( 10 )]
-transform = Transform( 2.43412, 3.37556e-08, -5.49653e-09, -3.37556e-08, 2.30838, -0.772237, -5.49653e-09, 0.772237, 2.30838, -0.185699, 0.877282, -5.57086 )
+transform = Transform( 3.67014, 5.08964e-08, -8.2876e-09, -5.08964e-08, 3.48055, -1.16437, -8.28761e-09, 1.16437, 3.48055, 2.71385, 1.2575, -6.70741 )
 
 [node name="Bush2" parent="Foliage" instance=ExtResource( 10 )]
-transform = Transform( 1.694, 0.930857, 2.78252, 1.02481, 2.82291, -1.56827, -2.74931, 1.6258, 1.12989, -4.69932, 0.59459, -6.46082 )
+transform = Transform( 2.4053, 1.32172, 3.95088, 1.45512, 4.00823, -2.22677, -3.90372, 2.30846, 1.60432, -6.83016, 1.02753, -7.61237 )
 
 [node name="Obstacles" type="Spatial" parent="."]
 

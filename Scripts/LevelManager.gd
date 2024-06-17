@@ -4,7 +4,7 @@ export(Array, Resource) var Levels = []
 
 var LevelInstances = []
 
-var OffsetZ = 5
+var OffsetZ = 13
 
 var OffsetToUpdate = 0
 
