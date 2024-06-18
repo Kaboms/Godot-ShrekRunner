@@ -2,12 +2,13 @@ extends ViewportContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
+func Show():
+	$".".show()
+	yield(get_tree().create_timer(0.25), "timeout")
+	$StartGameButton.disabled = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func _on_Shrek_StartGame():
-	$Label.hide()
+func _on_StartGameButton_button_down():
+	$".".hide()
+	$StartGameButton.disabled = true

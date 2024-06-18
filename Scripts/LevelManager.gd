@@ -1,5 +1,7 @@
 extends Node
 
+class_name LevelManager
+
 export(Array, Resource) var Levels = []
 
 var LevelInstances = []
@@ -44,3 +46,6 @@ func _process(delta):
 		
 		LevelInstance.transform.origin.z = OffsetZ + LevelInstance.LevelLenght / 2
 		OffsetZ += LevelInstance.LevelLenght
+
+func StartGame():
+	$Shrek.StartGame()

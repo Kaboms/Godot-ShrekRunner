@@ -15,7 +15,7 @@ signal AddCoin
 signal StartGame
 ###
 
-var DeathTimeout = 1
+var DeathTimeout = 0.5
 var IsDeath: bool = false
 var IsGameStarted: bool = false
 
@@ -23,8 +23,8 @@ var Coins = 0
 
 ### MOVEMENT
 export(float) var SpeedIncreaseDelta = 0.005
-export(float) var Speed = 4.75
-export(int) var MaxSpeed = 8
+export(float) var Speed = 7
+export(int) var MaxSpeed = 10
 export(int) var StrafeSpeed = 6
 export(float) var StrafeDistance = 1.5
 
@@ -43,7 +43,7 @@ var IsFall = false
 var IsJump = false
 
 var IsRoll = false
-var RollDistance = 4
+export(float) var RollDistance = 2.5
 var RollStartPosZ = 0
 
 # KISS
@@ -219,10 +219,7 @@ func SetIsRoll(InIsRoll: bool):
 
 func _input(event):
 	if (event is InputEventMouseButton && event.pressed) || event.is_action_pressed("Jump"):
-		if !IsGameStarted:
-			StartGame()
-			return
-		elif !IsRestart && IsDeath && DeathTimeout <= 0:
+		if !IsRestart && IsDeath && DeathTimeout <= 0:
 			IsRestart = true
 			get_node("/root/Main").Restart()
 

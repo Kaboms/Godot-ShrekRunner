@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Main.gd" type="Script" id=2]
-[ext_resource path="res://Levels/Chunks/Swamp/StartSection.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Audio/cutscene_SwampIntro_loop.ogg" type="AudioStream" id=4]
+[ext_resource path="res://UI/UI.gd" type="Script" id=5]
+[ext_resource path="res://UI/Images/Icon_MusicOff.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/Oswald/Oswald-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/SoundSwitcher.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/Images/Icon_MusicOn.png" type="Texture" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 3
+outline_color = Color( 0.054902, 1, 0, 1 )
+font_data = ExtResource( 7 )
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 2 )
@@ -11,10 +23,62 @@ script = ExtResource( 2 )
 [node name="Level" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.993667, 0, 0, 0, 0.993667, 0, 0, 0, 0.993667, 0.0237476, 0.00306666, 0.000374317 )
 
-[node name="Spatial" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.01405e-07, 0, 9.18307 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -10.0
 autoplay = true
+bus = "Music"
+
+[node name="UI" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="SoundButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
+SoundBusIndex = "Master"
+SoundOnText = "Sound ON"
+SoundOffText = "Sound OFF"
+
+[node name="MusicButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 54.0
+margin_bottom = 104.0
+SoundBusIndex = "Music"
+SoundOnText = "Music ON"
+SoundOffText = "Music OFF"
+SoundOnIcon = ExtResource( 9 )
+SoundOffIcon = ExtResource( 6 )
+
+[node name="StartGameButton" type="Button" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -400.0
+margin_bottom = 25.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+
+[node name="Label" type="Label" parent="UI/StartGameButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -49.5
+margin_right = 211.0
+margin_bottom = 61.5
+custom_fonts/font = SubResource( 2 )
+text = "TAP TO START"
+align = 1
+valign = 1
+
+[connection signal="button_down" from="UI/StartGameButton" to="." method="_on_StartGameButton_button_down"]
+[connection signal="button_down" from="UI/StartGameButton" to="UI" method="_on_StartGameButton_button_down"]

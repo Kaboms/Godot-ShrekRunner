@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BaseSDK",
+"language": "GDScript",
+"path": "res://Scripts/SDK/BaseSDK.gd"
+}, {
+"base": "Node",
+"class": "LevelManager",
+"language": "GDScript",
+"path": "res://Scripts/LevelManager.gd"
+}, {
+"base": "Node",
 "class": "LevelSequence",
 "language": "GDScript",
 "path": "res://Scripts/LevelSequence.gd"
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://Characters/Player.gd"
 } ]
 _global_script_class_icons={
+"BaseSDK": "",
+"LevelManager": "",
 "LevelSequence": "",
 "Player": ""
 }
@@ -29,6 +41,14 @@ _global_script_class_icons={
 config/name="Shrek Run"
 run/main_scene="res://Levels/Main.tscn"
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout="res://Audiobuslayout.tres"
+
+[autoload]
+
+StaticSDK="*res://Scripts/SDK/StaticSdk.gd"
 
 [debug]
 
@@ -43,7 +63,8 @@ window/handheld/orientation="portrait"
 
 [global]
 
-touch=false
+SDK=""
+SDK.Yandex="Yandex"
 
 [gui]
 
@@ -82,6 +103,10 @@ Down={
 3d_physics/layer_1="Walls"
 3d_physics/layer_2="Coins"
 3d_physics/layer_3="Obstacles"
+
+[locale]
+
+locale_filter=[ 0, [  ] ]
 
 [physics]
 

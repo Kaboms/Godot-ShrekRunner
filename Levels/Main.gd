@@ -5,15 +5,14 @@ extends Spatial
 # var a = 2
 # var b = "text"
 
-var Level
+var Level: LevelManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Level = $Level
-	pass # Replace with function body.
-
 
 func Restart():
+	$UI.Show()
 	Level.queue_free()
 	Level = load("res://Levels/Level.tscn").instance()
 	add_child(Level)
@@ -21,3 +20,6 @@ func Restart():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _on_StartGameButton_button_down():
+	Level.StartGame()
