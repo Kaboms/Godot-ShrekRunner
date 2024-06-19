@@ -5,4 +5,4 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Shrek_AddCoin():
-	set_text(String($"../../../Shrek".Coins))
+	set_text(String($"../../../../Shrek".Coins))

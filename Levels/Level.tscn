@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Meshes/Environment/Outdoor/Outdoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Shrek.tscn" type="PackedScene" id=2]
@@ -21,11 +21,25 @@
 [ext_resource path="res://Levels/Chunks/Swamp/Swamp_03.tscn" type="PackedScene" id=19]
 [ext_resource path="res://UI/GameUI.gd" type="Script" id=20]
 [ext_resource path="res://Levels/Chunks/Swamp/StartSection.tscn" type="PackedScene" id=21]
+[ext_resource path="res://UI/Images/Icon_Star.png" type="Texture" id=22]
+[ext_resource path="res://UI/ScoreCounter.gd" type="Script" id=23]
+[ext_resource path="res://UI/Images/Icon_Settings.png" type="Texture" id=24]
+[ext_resource path="res://UI/PauseButton.gd" type="Script" id=25]
+[ext_resource path="res://UI/Images/Item3.png" type="Texture" id=26]
+[ext_resource path="res://UI/Images/Icon_MusicOn.png" type="Texture" id=27]
+[ext_resource path="res://UI/Images/Icon_MusicOff.png" type="Texture" id=28]
+[ext_resource path="res://UI/SoundSwitcher.tscn" type="PackedScene" id=29]
+[ext_resource path="res://UI/Images/Item2.png" type="Texture" id=30]
+[ext_resource path="res://UI/PauseMenu.gd" type="Script" id=31]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
 font_data = ExtResource( 12 )
 
 [node name="Main" type="Spatial"]
@@ -106,25 +120,30 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.0233
 LevelLenght = 0.0
 
 [node name="GameUI" type="Control" parent="."]
+pause_mode = 2
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 20 )
 
 [node name="FpsCounter" parent="GameUI" instance=ExtResource( 10 )]
+visible = false
 
-[node name="CoinsCounterContainer" type="HBoxContainer" parent="GameUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = 250.0
+anchor_bottom = 1.0
+margin_left = -308.0
 margin_top = 25.0
-margin_right = 560.0
-margin_bottom = 100.0
+margin_right = -25.0
 
-[node name="CoinsCounter" type="Label" parent="GameUI/CoinsCounterContainer"]
-margin_top = 13.0
+[node name="CoinsCounterContainer" type="HBoxContainer" parent="GameUI/VBoxContainer"]
+margin_right = 283.0
+margin_bottom = 50.0
+
+[node name="CoinsCounter" type="Label" parent="GameUI/VBoxContainer/CoinsCounterContainer"]
 margin_right = 200.0
-margin_bottom = 62.0
+margin_bottom = 49.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 0 )
@@ -133,16 +152,173 @@ text = "0"
 align = 2
 script = ExtResource( 13 )
 
-[node name="HSplitContainer" type="HSplitContainer" parent="GameUI/CoinsCounterContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="GameUI/VBoxContainer/CoinsCounterContainer"]
+margin_left = 204.0
+margin_right = 204.0
+margin_bottom = 50.0
 
-[node name="TextureRect" type="TextureRect" parent="GameUI/CoinsCounterContainer"]
-margin_left = 223.0
-margin_right = 298.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 75, 75 )
+[node name="TextureRect" type="TextureRect" parent="GameUI/VBoxContainer/CoinsCounterContainer"]
+margin_left = 208.0
+margin_right = 258.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 11 )
 expand = true
 
-[connection signal="AddCoin" from="Shrek" to="GameUI/CoinsCounterContainer/CoinsCounter" method="_on_Shrek_AddCoin"]
+[node name="VSplitContainer" type="VSplitContainer" parent="GameUI/VBoxContainer"]
+margin_top = 54.0
+margin_right = 283.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="ScoreCounterContainer" type="HBoxContainer" parent="GameUI/VBoxContainer"]
+margin_top = 68.0
+margin_right = 283.0
+margin_bottom = 118.0
+
+[node name="ScoreCounter" type="Label" parent="GameUI/VBoxContainer/ScoreCounterContainer"]
+margin_right = 200.0
+margin_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+script = ExtResource( 23 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="GameUI/VBoxContainer/ScoreCounterContainer"]
+margin_left = 204.0
+margin_right = 204.0
+margin_bottom = 50.0
+
+[node name="TextureRect" type="TextureRect" parent="GameUI/VBoxContainer/ScoreCounterContainer"]
+margin_left = 208.0
+margin_right = 258.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 22 )
+expand = true
+
+[node name="PauseButton" type="Button" parent="GameUI"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 120.0
+margin_bottom = 120.0
+icon = ExtResource( 24 )
+flat = true
+expand_icon = true
+script = ExtResource( 25 )
+
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -512.0
+margin_right = 300.0
+margin_bottom = 512.0
+script = ExtResource( 31 )
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -150.0
+margin_right = 150.0
+margin_bottom = 150.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -120.0
+margin_right = 110.0
+margin_bottom = 120.0
+
+[node name="SoundButton" parent="PauseMenu/VBoxContainer" instance=ExtResource( 29 )]
+margin_right = 220.0
+focus_mode = 2
+
+[node name="MusicButton" parent="PauseMenu/VBoxContainer" instance=ExtResource( 29 )]
+margin_top = 54.0
+margin_right = 220.0
+margin_bottom = 104.0
+focus_mode = 2
+SoundBusName = "Music"
+SoundOnText = "Music ON"
+SoundOffText = "Music OFF"
+SoundOnIcon = ExtResource( 27 )
+SoundOffIcon = ExtResource( 28 )
+
+[node name="VSplitContainer" type="VSplitContainer" parent="PauseMenu/VBoxContainer"]
+margin_top = 108.0
+margin_right = 220.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="ContinueButton" type="TextureButton" parent="PauseMenu/VBoxContainer"]
+margin_top = 127.0
+margin_right = 220.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 200, 50 )
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 30 )
+texture_disabled = ExtResource( 30 )
+texture_focused = ExtResource( 30 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer/ContinueButton"]
+margin_left = 54.0
+margin_top = -7.0
+margin_right = 169.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+text = "Continue"
+align = 1
+valign = 1
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="PauseMenu/VBoxContainer"]
+margin_top = 181.0
+margin_right = 220.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="ExitButton" type="TextureButton" parent="PauseMenu/VBoxContainer"]
+margin_top = 200.0
+margin_right = 220.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 200, 50 )
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 30 )
+texture_disabled = ExtResource( 30 )
+texture_focused = ExtResource( 30 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer/ExitButton"]
+margin_left = 54.0
+margin_top = -7.0
+margin_right = 169.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+align = 1
+valign = 1
+
+[connection signal="AddCoin" from="Shrek" to="GameUI/VBoxContainer/CoinsCounterContainer/CoinsCounter" method="_on_Shrek_AddCoin"]
 [connection signal="StartGame" from="Shrek" to="StartPosition" method="_on_Shrek_StartGame"]
 [connection signal="StartGame" from="Shrek" to="GameUI" method="_on_Shrek_StartGame"]
+[connection signal="pressed" from="GameUI/PauseButton" to="GameUI/PauseButton" method="_on_Button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ContinueButton" to="PauseMenu" method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitButton" to="PauseMenu" method="_on_ExitButton_pressed"]

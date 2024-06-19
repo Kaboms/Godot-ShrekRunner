@@ -24,12 +24,14 @@ script = ExtResource( 2 )
 transform = Transform( 0.993667, 0, 0, 0, 0.993667, 0, 0, 0, 0.993667, 0.0237476, 0.00306666, 0.000374317 )
 
 [node name="MusicSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
 volume_db = -10.0
 autoplay = true
 bus = "Music"
 
 [node name="UI" type="ViewportContainer" parent="."]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -41,14 +43,11 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="SoundButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
-SoundBusIndex = "Master"
-SoundOnText = "Sound ON"
-SoundOffText = "Sound OFF"
 
 [node name="MusicButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 54.0
 margin_bottom = 104.0
-SoundBusIndex = "Music"
+SoundBusName = "Music"
 SoundOnText = "Music ON"
 SoundOffText = "Music OFF"
 SoundOnIcon = ExtResource( 9 )
@@ -58,7 +57,7 @@ SoundOffIcon = ExtResource( 6 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -400.0
+margin_top = -600.0
 margin_bottom = 25.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )

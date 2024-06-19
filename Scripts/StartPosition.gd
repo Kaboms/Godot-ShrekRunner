@@ -1,15 +1,17 @@
 extends Spatial
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
+var GameStarted = false
+var TimePassed = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
+func _process(delta):
+	if !GameStarted: return
+	
+	TimePassed += delta
+	if TimePassed > 5:
+		queue_free()
+
 func _on_Shrek_StartGame():
-	yield(get_tree().create_timer(3), "timeout")
-	queue_free()
+	GameStarted = true

@@ -4,4 +4,6 @@ class_name BaseSDK
 
 func StartGame():
 	print("Started with No SDK")
+
+func ShowAdvBanner():
 	pass

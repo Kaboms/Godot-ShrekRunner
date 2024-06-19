@@ -82,6 +82,13 @@ var CoinPickupSound = [
 var CurrentCoinPickupSound = 0
 ###
 
+### SCORE
+var Score: int = 0
+var ScoreMult: int = 1
+var LastZPos: int = 0
+var ScoreDistance: float = 0
+###
+
 var IsRestart = false
 
 # Called when the node enters the scene tree for the first time.
@@ -96,6 +103,12 @@ func _process(delta):
 		ActivateInputDelay -= delta
 		if ActivateInputDelay <= 0:
 			InputEnabled = true
+
+	ScoreDistance = (transform.origin.z - LastZPos)
+	if (ScoreDistance >= 1):
+		LastZPos = transform.origin.z
+		Score += ScoreDistance * ScoreMult
+		ScoreDistance = 0
 
 func _physics_process(delta):
 	HandleMovement(delta)
@@ -217,11 +230,14 @@ func SetIsRoll(InIsRoll: bool):
 	IsRoll = InIsRoll
 	$CapsuleCollision.disabled = IsRoll
 
+func Restart():
+	IsRestart = true
+	get_node("/root/Main").Restart()
+
 func _input(event):
 	if (event is InputEventMouseButton && event.pressed) || event.is_action_pressed("Jump"):
 		if !IsRestart && IsDeath && DeathTimeout <= 0:
-			IsRestart = true
-			get_node("/root/Main").Restart()
+			Restart()
 
 	if !event.is_action_type() || !InputEnabled: return
 
@@ -266,6 +282,9 @@ func Death():
 	Velocity = Vector3.ZERO
 
 	emit_signal("Death")
+	
+	yield(get_tree().create_timer(DeathTimeout / 2), "timeout")
+	StaticSDK.GetSDK().ShowAdvBanner()
 
 func Landed():
 	if IsDeath: return

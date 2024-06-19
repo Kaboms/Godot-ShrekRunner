@@ -28,8 +28,9 @@ custom_styles/disabled = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 expand_icon = true
 script = ExtResource( 2 )
-SoundOnText = "Asdasas"
-SoundOffText = "ASdasd"
+SoundBusName = "Master"
+SoundOnText = "Sound ON"
+SoundOffText = "Sound OFF"
 SoundOnIcon = ExtResource( 3 )
 SoundOffIcon = ExtResource( 4 )
 
