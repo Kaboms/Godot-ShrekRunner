@@ -25,6 +25,7 @@ func _ready():
 		LevelInstances.append(LevelInstance)
 		
 		LevelInstance.transform.origin.z = OffsetZ + LevelInstance.LevelLenght / 2
+		LevelInstance.OffsetZ = OffsetZ
 		OffsetZ += LevelInstance.LevelLenght
 
 	OffsetToUpdate += LevelInstances[0].LevelLenght
@@ -45,7 +46,13 @@ func _process(delta):
 		LevelInstances.append(LevelInstance)
 		
 		LevelInstance.transform.origin.z = OffsetZ + LevelInstance.LevelLenght / 2
+		LevelInstance.OffsetZ = OffsetZ
 		OffsetZ += LevelInstance.LevelLenght
 
 func StartGame():
 	$Shrek.StartGame()
+
+func Continue():
+	for level in LevelInstances:
+		if $Shrek.transform.origin.z > level.OffsetZ:
+			level.RemoveObstacles()

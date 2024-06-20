@@ -44,4 +44,6 @@ func PlayRollUp():
 	play("RollUp",  -1, 1.5)
 	queue("run")
 
-	
+func PlayStandUp():
+	play("getupback", -1, 2)
+	queue("Idle")

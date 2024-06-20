@@ -24,10 +24,10 @@ func SetSoundEnabled(Enabled : bool):
 	
 	if SoundEnabled:
 		$HBoxContainer/Icon.texture = SoundOnIcon
-		$HBoxContainer/Label.text = tr(SoundOnText)
+		$HBoxContainer/Label.text = SoundOnText
 	else:
 		$HBoxContainer/Icon.texture = SoundOffIcon
-		$HBoxContainer/Label.text = tr(SoundOffText)
+		$HBoxContainer/Label.text = SoundOffText
 
 	SoundManager.MuteBus(SoundBusIndex, !SoundEnabled)
 

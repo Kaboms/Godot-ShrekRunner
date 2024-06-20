@@ -1,15 +1,30 @@
 extends BaseSDK
 
 var TabActivatedCallback = JavaScript.create_callback(self, "TabActivated")
-var TabDeactivatedallback = JavaScript.create_callback(self, "TabDeactivated")
+var TabDeactivatedCallback = JavaScript.create_callback(self, "TabDeactivated")
+
+var RewardSuccessCallback = JavaScript.create_callback(self, "RewardSuccess")
+var RewardFailedCallback = JavaScript.create_callback(self, "RewardFailed")
 
 var window = JavaScript.get_interface("window")
 
-func _ready():
-	print("XYU")
-	window.tabActivated = TabActivatedCallback
-	window.tabDeactivated = TabDeactivatedallback
+var LangReferences = {
+	"be": "ru",
+	"kk": "ru",
+	"uk": "ru",
+	"uz": "ru",
+	"ru": "ru",
+}
 
+func _ready():
+	window.tabActivated = TabActivatedCallback
+	window.tabDeactivated = TabDeactivatedCallback
+	
+	window.rewardSuccess = RewardSuccessCallback
+	window.rewardFailed = RewardFailedCallback
+
+	TranslationServer.set_locale(LangReferences.get(window.ysdk.environment.i18n.lang, 'en'))
+	
 func TabActivated(args):
 	SoundManager.MuteAllSound(false)
 
@@ -21,3 +36,12 @@ func StartGame():
 	
 func ShowAdvBanner():
 	window.showAdvBanner()
+
+func ShowRewardedVideo():
+	window.showRewardedVideo()
+	
+func RewardSuccess(args):
+	emit_signal("RewardSuccess")
+
+func RewardFailed(args):
+	emit_signal("RewardFailed")

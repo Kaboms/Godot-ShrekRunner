@@ -6,3 +6,9 @@ func _ready():
 
 func _on_Shrek_StartGame():
 	$".".show()
+
+func _on_Shrek_Death():
+	$PauseButton.hide()
+
+func _on_Shrek_StandUp():
+	$PauseButton.show()

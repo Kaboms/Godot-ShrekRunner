@@ -5,7 +5,7 @@ var CurrentSDK: BaseSDK = null
 func _ready():
 	GetSDK().StartGame()
 
-func GetSDK():
+func GetSDK() -> BaseSDK:
 	if CurrentSDK != null:
 		return CurrentSDK
 

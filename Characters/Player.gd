@@ -9,6 +9,7 @@ signal Jump
 signal Down
 
 signal Death
+signal StandUp
 
 signal AddCoin
 
@@ -234,11 +235,9 @@ func Restart():
 	IsRestart = true
 	get_node("/root/Main").Restart()
 
-func _input(event):
-	if (event is InputEventMouseButton && event.pressed) || event.is_action_pressed("Jump"):
-		if !IsRestart && IsDeath && DeathTimeout <= 0:
-			Restart()
+	SoundManager.MuteAllSound(false)
 
+func _input(event):
 	if !event.is_action_type() || !InputEnabled: return
 
 	SwipeControl(event)
@@ -276,6 +275,8 @@ func KeyboardControl(event):
 func Death():
 	if IsDeath: return
 	
+	SoundManager.MuteAllSound(true)
+	
 	IsDeath = true
 	$AnimationPlayer.PlayDeath()
 
@@ -299,3 +300,13 @@ func AddCoin():
 		CurrentCoinPickupSound = 0
 	Coins += 1
 	emit_signal("AddCoin")
+	
+func StandUp():
+	$AnimationPlayer.PlayStandUp()
+	yield(get_tree().create_timer(1), "timeout")
+	$AnimationPlayer.PlayRun()
+	IsDeath = false
+	
+	SoundManager.MuteAllSound(false)
+	
+	emit_signal("StandUp")

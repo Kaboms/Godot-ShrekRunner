@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Main.gd" type="Script" id=2]
+[ext_resource path="res://UI/Images/Flags/ru_flag.png" type="Texture" id=3]
 [ext_resource path="res://Audio/cutscene_SwampIntro_loop.ogg" type="AudioStream" id=4]
 [ext_resource path="res://UI/UI.gd" type="Script" id=5]
 [ext_resource path="res://UI/Images/Icon_MusicOff.png" type="Texture" id=6]
 [ext_resource path="res://Fonts/Oswald/Oswald-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://UI/SoundSwitcher.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/Images/Icon_MusicOn.png" type="Texture" id=9]
+[ext_resource path="res://Levels/ChangeLangButton.gd" type="Script" id=10]
+[ext_resource path="res://UI/Images/Flags/en_flag.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -30,7 +33,7 @@ volume_db = -10.0
 autoplay = true
 bus = "Music"
 
-[node name="UI" type="ViewportContainer" parent="."]
+[node name="UI" type="Control" parent="."]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,13 +42,15 @@ script = ExtResource( 5 )
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 margin_left = 25.0
 margin_top = 25.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 593.0
+margin_bottom = 1017.0
 
 [node name="SoundButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
+margin_right = 568.0
 
 [node name="MusicButton" parent="UI/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 54.0
+margin_right = 568.0
 margin_bottom = 104.0
 SoundBusName = "Music"
 SoundOnText = "Music ON"
@@ -57,8 +62,7 @@ SoundOffIcon = ExtResource( 6 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -600.0
-margin_bottom = 25.0
+margin_top = -500.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/focus = SubResource( 1 )
@@ -66,18 +70,27 @@ custom_styles/disabled = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 
 [node name="Label" type="Label" parent="UI/StartGameButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -212.0
-margin_top = -49.5
-margin_right = 211.0
-margin_bottom = 61.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
-text = "TAP TO START"
+text = "Tap to start"
 align = 1
 valign = 1
+uppercase = true
+
+[node name="ChangeLangButton" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -125.0
+margin_top = 25.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
+script = ExtResource( 10 )
+LangsIcons = [ ExtResource( 3 ), ExtResource( 11 ) ]
 
 [connection signal="button_down" from="UI/StartGameButton" to="." method="_on_StartGameButton_button_down"]
 [connection signal="button_down" from="UI/StartGameButton" to="UI" method="_on_StartGameButton_button_down"]
+[connection signal="pressed" from="UI/ChangeLangButton" to="UI/ChangeLangButton" method="_on_ChangeLangButton_pressed"]
