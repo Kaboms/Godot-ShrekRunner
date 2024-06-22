@@ -4,6 +4,7 @@ class_name BaseSDK
 
 signal RewardSuccess
 signal RewardFailed
+signal RewardClosed
 
 func StartGame():
 	print("Started with No SDK")
@@ -13,3 +14,4 @@ func ShowAdvBanner():
 
 func ShowRewardedVideo():
 	emit_signal("RewardSuccess")
+	emit_signal("RewardClosed")

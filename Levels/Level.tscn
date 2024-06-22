@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Meshes/Environment/Outdoor/Outdoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Shrek.tscn" type="PackedScene" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://UI/Images/Icon_Exit.png" type="Texture" id=33]
 [ext_resource path="res://UI/Images/Icon_Skull.png" type="Texture" id=34]
 [ext_resource path="res://UI/GameOverMenu.gd" type="Script" id=35]
+[ext_resource path="res://UI/ErrorMessageBox.gd" type="Script" id=36]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -460,6 +461,67 @@ text = "End"
 align = 1
 valign = 1
 
+[node name="ErrorMessageBox" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -125.0
+margin_right = 125.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 150 )
+script = ExtResource( 36 )
+
+[node name="TextureRect" type="TextureRect" parent="ErrorMessageBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ErrorMessageBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+
+[node name="Label" type="Label" parent="ErrorMessageBox/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "Error"
+align = 1
+valign = 1
+
+[node name="OkButton" type="TextureButton" parent="ErrorMessageBox/VBoxContainer"]
+margin_top = 44.0
+margin_right = 200.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 200, 50 )
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 30 )
+texture_disabled = ExtResource( 30 )
+texture_focused = ExtResource( 30 )
+expand = true
+
+[node name="Label" type="Label" parent="ErrorMessageBox/VBoxContainer/OkButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -109.0
+margin_top = -24.0
+margin_right = 108.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 2 )
+text = "OK"
+align = 1
+valign = 1
+
 [connection signal="AddCoin" from="Shrek" to="GameUI/VBoxContainer/CoinsCounterContainer/CoinsCounter" method="_on_Shrek_AddCoin"]
 [connection signal="Death" from="Shrek" to="GameUI" method="_on_Shrek_Death"]
 [connection signal="Death" from="Shrek" to="GameOverMenu" method="_on_Shrek_Death"]
@@ -471,3 +533,4 @@ valign = 1
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ExitButton" to="PauseMenu" method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="GameOverMenu/VBoxContainer/ContinueButton" to="GameOverMenu" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="GameOverMenu/VBoxContainer/ExitButton" to="GameOverMenu" method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="ErrorMessageBox/VBoxContainer/OkButton" to="ErrorMessageBox" method="_on_OkButton_pressed"]
