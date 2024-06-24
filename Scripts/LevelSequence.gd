@@ -10,5 +10,8 @@ func _ready():
 	pass # Replace with function body.
 	
 func RemoveObstacles():
-	remove_child(get_node("Obstacles"))
-	remove_child(get_node("Coins"))
+	if has_node("Obstacles"):
+		remove_child(get_node("Obstacles"))
+		
+	if has_node("Coins"):	
+		remove_child(get_node("Coins"))

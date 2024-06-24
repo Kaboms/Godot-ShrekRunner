@@ -1,12 +1,22 @@
 extends Spatial
 
+class_name BaseCoin
+
 export var CoinAmount: int = 1
+var Target: Spatial = null
+var Speed: float = 2
+var StartPos: Vector3
+var MoveAlpha: float = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _process(delta):
+	if Target == null: return
+	MoveAlpha += Speed * delta
+	MoveAlpha = clamp(MoveAlpha, 0, 1)
+	global_transform.origin = lerp(StartPos, Target.global_transform.origin, MoveAlpha)
 
-func _on_Area_body_entered(body):
-	if body is Player:
-		body.AddCoin()
+func AddedToPlayer():
 	queue_free()
+
+func MoveTo(NewTarget: Spatial):
+	Target = NewTarget
+	StartPos = global_transform.origin

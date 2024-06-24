@@ -60,9 +60,10 @@ var ForwardVector
 ### CAMERA
 var MoveCameraDelay = 0.3
 var MoveCamera = false
-export var CameraSmooth = 0.02
+export var CameraSmooth = 1.5
 var MoveCameraWeight = 0
-
+var CameraStartPoint: Vector3
+var CameraStartRotation: Vector3
 ###
 
 ### Mouse Control
@@ -92,6 +93,11 @@ var ScoreDistance: float = 0
 
 var IsRestart = false
 
+### Magnite
+export(float) var MagniteDuration = 30
+var MagniteTimePassed = 0
+var MagniteActivated = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ForwardVector = get_global_transform().basis
@@ -99,7 +105,8 @@ func _ready():
 
 func _process(delta):
 	HandleCameraSetup(delta)
-	
+	HandleMagnite(delta)
+
 	if IsGameStarted && !InputEnabled:
 		ActivateInputDelay -= delta
 		if ActivateInputDelay <= 0:
@@ -175,11 +182,11 @@ func HandleCameraSetup(delta):
 	if MoveCamera:
 		MoveCameraDelay -= delta
 		if MoveCameraDelay <= 0:
-			MoveCameraWeight = 1 - pow(CameraSmooth, delta)
+			MoveCameraWeight += CameraSmooth * delta
 			MoveCameraWeight = clamp(MoveCameraWeight, 0, 1)
-			$Camera.transform.origin = lerp($Camera.transform.origin, $CameraPoint.transform.origin, MoveCameraWeight)
-			$Camera.rotation.y = lerp_angle($Camera.rotation.y, $CameraPoint.rotation.y, MoveCameraWeight)
-			$Camera.rotation.x = lerp_angle($Camera.rotation.x, $CameraPoint.rotation.x, MoveCameraWeight)
+			$Camera.transform.origin = lerp(CameraStartPoint, $CameraPoint.transform.origin, MoveCameraWeight)
+			$Camera.rotation.y = lerp_angle(CameraStartRotation.y, $CameraPoint.rotation.y, MoveCameraWeight)
+			$Camera.rotation.x = lerp_angle(CameraStartRotation.x, $CameraPoint.rotation.x, MoveCameraWeight)
 			
 			if MoveCameraWeight == 1:
 				MoveCamera = false
@@ -202,7 +209,9 @@ func StartGame():
 	$AnimationPlayer.PlayRun()
 
 	MoveCamera = true
-
+	CameraStartPoint = $Camera.transform.origin
+	CameraStartRotation = $Camera.rotation
+	
 	emit_signal("StartGame")
 
 func MoveLeft():
@@ -233,9 +242,17 @@ func SetIsRoll(InIsRoll: bool):
 
 func Restart():
 	IsRestart = true
-	get_node("/root/Main").Restart()
 
 	SoundManager.MuteAllSound(false)
+
+	var SDK: BaseSDK = StaticSDK.GetSDK()
+	var BestScore = SDK.BestScore
+	if BestScore < Score:
+		BestScore = Score
+	
+	SDK.SaveStats(BestScore, SDK.Money + Coins)
+	
+	get_node("/root/Main").Restart()
 
 func _input(event):
 	if !event.is_action_type() || !InputEnabled: return
@@ -277,6 +294,8 @@ func Death():
 	
 	SoundManager.MuteAllSound(true)
 	
+	SetIsRoll(false)
+	IsJump = false
 	IsDeath = true
 	$AnimationPlayer.PlayDeath()
 
@@ -292,13 +311,14 @@ func Landed():
 
 	$AnimationPlayer.PlayLanded()
 
-func AddCoin():
+func AddCoin(Coin: BaseCoin):
 	$AudioStreamPlayer.stream = CoinPickupSound[CurrentCoinPickupSound]
 	$AudioStreamPlayer.play()
 	CurrentCoinPickupSound += 1
 	if CurrentCoinPickupSound >= CoinPickupSound.size():
 		CurrentCoinPickupSound = 0
 	Coins += 1
+	Coin.AddedToPlayer()
 	emit_signal("AddCoin")
 	
 func StandUp():
@@ -310,3 +330,25 @@ func StandUp():
 	SoundManager.MuteAllSound(false)
 	
 	emit_signal("StandUp")
+
+func HandleMagnite(delta):
+	if !MagniteActivated: return
+
+	MagniteTimePassed += delta
+	if MagniteTimePassed >= MagniteDuration:
+		ActivateMagnite(false)
+
+func ActivateMagnite(activate: bool):
+	MagniteActivated = activate
+	$CoinsMagniteArea/CoinsMagniteCollision.disabled = !MagniteActivated
+	MagniteTimePassed = 0
+
+func _on_Collision_area_entered(area):
+	var AreaParent = area.get_parent()
+	if AreaParent is BaseCoin:
+		AddCoin(AreaParent)
+
+func _on_CoinsMagniteCollision_area_entered(area):
+	var AreaParent = area.get_parent()
+	if AreaParent is BaseCoin:
+		AreaParent.MoveTo($CapsuleCollision)

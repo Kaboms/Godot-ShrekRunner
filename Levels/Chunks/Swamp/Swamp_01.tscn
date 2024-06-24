@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Items/Coins/Coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
 [ext_resource path="res://Meshes/Landscape/SwampLandscape/Landscape.glb" type="PackedScene" id=5]
 [ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=6]
+[ext_resource path="res://Items/Potions/Magnite/PotionMagnite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Meshes/Environment/Trees/Tree_03/tree_2.glb" type="PackedScene" id=8]
 [ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/RandomSpawner.tscn" type="PackedScene" id=10]
@@ -106,4 +107,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 [node name="RandomSpawner" parent="Obstacles" instance=ExtResource( 10 )]
 transform = Transform( -1.31984e-08, -7.17801e-10, -0.30239, -0.0164214, 0.301943, 0, 0.301943, 0.0164214, -1.32179e-08, -4.9613, 0.398193, -0.127866 )
 SpatialToSpawn = ExtResource( 11 )
-SpawnChance = 0.1
+SpawnChance = 0.2
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="potion_maginte" parent="Items" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.547315, 0.551298, 1.50201 )

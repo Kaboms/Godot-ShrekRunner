@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "BaseCoin",
+"language": "GDScript",
+"path": "res://Items/Coins/BaseCoin.gd"
+}, {
 "base": "Node",
 "class": "BaseSDK",
 "language": "GDScript",
@@ -28,12 +33,19 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Characters/Player.gd"
+}, {
+"base": "Control",
+"class": "SkinItem",
+"language": "GDScript",
+"path": "res://UI/Shop/SkinItem.gd"
 } ]
 _global_script_class_icons={
+"BaseCoin": "",
 "BaseSDK": "",
 "LevelManager": "",
 "LevelSequence": "",
-"Player": ""
+"Player": "",
+"SkinItem": ""
 }
 
 [application]

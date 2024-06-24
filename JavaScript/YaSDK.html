@@ -1,0 +1,118 @@
+<!-- Yandex Games SDK -->
+<script src="https://yandex.ru/games/sdk/v2"></script>
+<script>
+ysdk;
+tabActivated = null;
+tabDeactivated = null;
+
+rewardSuccess = null;
+rewardFailed = null;
+
+onLoadScoreCallback = null;
+onLoadMoneyCallback = null;
+
+player = null;
+
+function loadStats(stats_data){
+    if (stats_data.score != undefined){
+        onLoadScoreCallback(stats_data.score)
+    }
+    if (stats_data.money != undefined){
+        onLoadMoneyCallback(stats_data.money)
+    }
+}
+
+function getStats()
+{
+    player.getStats().then(stats_data => {
+                loadStats(stats_data);
+    });
+}
+
+function initPlayer() {
+    return ysdk.getPlayer({ scopes: false }).then(_player => {
+            player = _player;
+
+            player.getStats().then(stats_data => {
+                loadStats(stats_data);
+
+                if (ysdk.features.LoadingAPI) {
+                    ysdk.features.LoadingAPI.ready();
+                    console.log("Ready")
+                }
+            });
+
+            return player;
+        });
+}
+
+function saveStats(newScore, newMoney) {
+    player.setStats({
+        score: newScore,
+        money: newMoney,
+    }).then(stats_data => {
+    });
+}
+
+function saveMoney(newMoney){
+    player.setStats({
+        money: newMoney,
+    }).then(stats_data => {
+    });
+}
+
+function initGame(params) {
+	console.log("initGame")
+    YaGames.init(params)
+        .then((_sdk) => {
+            ysdk = _sdk;
+
+            initPlayer();
+        })
+        .catch(console.error);
+}
+
+function showAdvBanner(){
+	ysdk.adv.showFullscreenAdv({
+    	callbacks: {
+        	onClose: function(wasShown) {
+          	// Действие после закрытия рекламы.
+        	},
+        	onError: function(error) {
+          	// Действие в случае ошибки.
+        	}
+    	}
+	})
+}
+
+function showRewardedVideo(){
+	ysdk.adv.showRewardedVideo({
+	    callbacks: {
+	        onOpen: () => {
+	          console.log('Video ad open.');
+	        },
+	        onRewarded: () => {
+			  rewardSuccess();
+	          console.log('Rewarded!');
+	        },
+	        onClose: () => {
+			  rewardClosed();
+	          console.log('Video ad closed.');
+	        }, 
+	        onError: (e) => {
+			  rewardFailed();
+	          console.log('Error while open video ad:', e);
+	        }
+	    }
+	})
+}
+
+document.addEventListener("visibilitychange", (event) => {
+  if (document.visibilityState == "visible") {
+    tabActivated();
+  } else {
+    tabDeactivated();
+	console.log(tabDeactivated)
+  }
+});
+</script>

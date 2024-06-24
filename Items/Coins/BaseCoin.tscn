@@ -18,5 +18,3 @@ shape = SubResource( 1 )
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource( 2 )
-
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
