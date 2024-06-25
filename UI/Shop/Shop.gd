@@ -1,6 +1,6 @@
 extends Control
 
-export(Array, Texture) var Skins = []
+export(Array, Resource) var Skins = []
 
 signal Closed
 

@@ -47,10 +47,10 @@ expand = true
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 margin_left = 54.0
-margin_right = 154.0
+margin_right = 177.0
 margin_bottom = 49.0
 custom_fonts/font = SubResource( 2 )
-text = "Asdasas"
+text = "Sound ON"
 align = 1
 valign = 1
 

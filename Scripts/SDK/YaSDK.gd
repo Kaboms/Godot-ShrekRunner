@@ -7,6 +7,10 @@ var RewardSuccessCallback = JavaScript.create_callback(self, "RewardSuccess")
 var RewardFailedCallback = JavaScript.create_callback(self, "RewardFailed")
 var RewardClosedCallback = JavaScript.create_callback(self, "RewardClosed")
 
+var SkinRewardSuccessCallback = JavaScript.create_callback(self, "OnSkinRewardSuccess")
+var SkinRewardFailedCallback = JavaScript.create_callback(self, "OnSkinRewardFailed")
+var SkinRewardClosedCallback = JavaScript.create_callback(self, "OnSkinRewardClosed")
+
 var OnLoadScoreCallback = JavaScript.create_callback(self, "OnLoadScore")
 var OnLoadMoneyCallback = JavaScript.create_callback(self, "OnLoadMoney")
 
@@ -28,6 +32,10 @@ func _ready():
 	window.rewardFailed = RewardFailedCallback
 	window.rewardClosed = RewardClosedCallback
 	
+	window.skinRewardSuccess = SkinRewardSuccessCallback
+	window.skinRewardFailed = SkinRewardFailedCallback
+	window.skinRewardClosed = SkinRewardClosedCallback
+	
 	window.onLoadScoreCallback = OnLoadScoreCallback
 	window.onLoadMoneyCallback = OnLoadMoneyCallback
 
@@ -45,18 +53,30 @@ func StartGame():
 func ShowAdvBanner():
 	window.showAdvBanner()
 
-func ShowRewardedVideo():
-	window.showRewardedVideo()
-	
+func ShowRewardedVideo(rewardType):
+	window.showRewardedVideo(rewardType)
+
+func ShowSkinRewardedVideo(skinId):
+	window.showSkinRewardedVideo(skinId)
+		
 func RewardSuccess(args):
-	emit_signal("RewardSuccess")
+	emit_signal("RewardSuccess", args[0])
 
 func RewardFailed(args):
-	emit_signal("RewardFailed")
+	emit_signal("RewardFailed", args[0])
 	
 func RewardClosed(args):
-	emit_signal("RewardClosed")
+	emit_signal("RewardClosed", args[0])
 
+func OnSkinRewardSuccess(args):
+	emit_signal("SkinRewardSuccess", args[0])
+
+func OnSkinRewardFailed(args):
+	emit_signal("SkinRewardFailed", args[0])
+	
+func OnSkinRewardClosed(args):
+	emit_signal("SkinRewardClosed", args[0])
+	
 func OnLoadMoney(args):
 	print("OnLoadMoney " + str(args))
 	SetMoney(args[0])

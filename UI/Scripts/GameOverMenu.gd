@@ -14,15 +14,17 @@ func _on_ExitButton_pressed():
 	$"../Shrek".Restart()
 
 func _on_ContinueButton_pressed():
-	StaticSDK.GetSDK().ShowRewardedVideo()
+	StaticSDK.GetSDK().ShowRewardedVideo(BaseSDK.RewardTypes.NewLife)
 	
 func OnRewardFailed():
 	$"../ErrorMessageBox".show()
 
-func OnRewardSuccess():
-	IsRewarded = true
+func OnRewardSuccess(rewardType):
+	IsRewarded = rewardType == BaseSDK.RewardTypes.NewLife
+
+func OnRewardClosed(rewardType):
+	if rewardType != BaseSDK.RewardTypes.NewLife: return
 	
-func OnRewardClosed():
 	if IsRewarded:
 		$"../Shrek".StandUp()
 		$"..".Continue()

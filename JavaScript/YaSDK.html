@@ -8,8 +8,14 @@ tabDeactivated = null;
 rewardSuccess = null;
 rewardFailed = null;
 
+skinRewardSuccess = null;
+skinRewardFailed = null;
+skinRewardClosed = null;
+
 onLoadScoreCallback = null;
 onLoadMoneyCallback = null;
+
+onLoadDataCallback = null;
 
 player = null;
 
@@ -36,10 +42,14 @@ function initPlayer() {
             player.getStats().then(stats_data => {
                 loadStats(stats_data);
 
-                if (ysdk.features.LoadingAPI) {
-                    ysdk.features.LoadingAPI.ready();
-                    console.log("Ready")
-                }
+                player.getData().then(player_data => {
+                    onLoadDataCallback(player_data)
+
+                    if (ysdk.features.LoadingAPI) {
+                        ysdk.features.LoadingAPI.ready();
+                        console.log("Ready")
+                    }
+                })
             });
 
             return player;
@@ -85,22 +95,55 @@ function showAdvBanner(){
 	})
 }
 
-function showRewardedVideo(){
+function onBuySkin(newSkins, newMoney){
+    player.setData({
+        skins: newSkins,
+    }).then(() => {
+        player.setStats({
+            money: newMoney,
+        }).then(stats_data => {
+        });
+    });
+}
+
+function showRewardedVideo(rewardType){
 	ysdk.adv.showRewardedVideo({
 	    callbacks: {
 	        onOpen: () => {
 	          console.log('Video ad open.');
 	        },
 	        onRewarded: () => {
-			  rewardSuccess();
+			  rewardSuccess(rewardType);
 	          console.log('Rewarded!');
 	        },
 	        onClose: () => {
-			  rewardClosed();
+			  rewardClosed(rewardType);
 	          console.log('Video ad closed.');
 	        }, 
 	        onError: (e) => {
-			  rewardFailed();
+			  rewardFailed(rewardType);
+	          console.log('Error while open video ad:', e);
+	        }
+	    }
+	})
+}
+
+function showSkinRewardedVideo(skinId){
+	ysdk.adv.showRewardedVideo({
+	    callbacks: {
+	        onOpen: () => {
+	          console.log('Video ad open.');
+	        },
+	        onRewarded: () => {
+			  skinRewardSuccess(skinId);
+	          console.log('Rewarded!');
+	        },
+	        onClose: () => {
+			  skinRewardClosed(skinId);
+	          console.log('Video ad closed.');
+	        }, 
+	        onError: (e) => {
+              skinRewardFailed(skinId);
 	          console.log('Error while open video ad:', e);
 	        }
 	    }

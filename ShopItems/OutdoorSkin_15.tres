@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://ShopItems/OutdoorSkin.gd" type="Script" id=1]
+[ext_resource path="res://Meshes/Environment/Outdoor/Skins/outhouse_02.png" type="Texture" id=2]
+[ext_resource path="res://UI/Shop/Skins/013.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+ID = 14
+Price = 150000
+SkinPreview = ExtResource( 3 )
+SkinTexture = ExtResource( 2 )
+Purchased = false
+ForAdversation = false

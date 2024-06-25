@@ -1,25 +1,26 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://UI/Shop/Shop.gd" type="Script" id=1]
-[ext_resource path="res://UI/Shop/Skins/012.png" type="Texture" id=2]
-[ext_resource path="res://UI/Shop/Skins/002.png" type="Texture" id=3]
-[ext_resource path="res://UI/Shop/Skins/005.png" type="Texture" id=4]
-[ext_resource path="res://UI/Shop/Skins/003.png" type="Texture" id=5]
-[ext_resource path="res://UI/Shop/Skins/004.png" type="Texture" id=6]
-[ext_resource path="res://UI/Shop/Skins/009.png" type="Texture" id=7]
-[ext_resource path="res://UI/Shop/Skins/011.png" type="Texture" id=8]
-[ext_resource path="res://UI/Shop/Skins/006.png" type="Texture" id=9]
-[ext_resource path="res://UI/Shop/Skins/008.png" type="Texture" id=10]
-[ext_resource path="res://UI/Shop/Skins/001.png" type="Texture" id=11]
-[ext_resource path="res://UI/Shop/Skins/013.png" type="Texture" id=12]
-[ext_resource path="res://UI/Shop/Skins/014.png" type="Texture" id=13]
-[ext_resource path="res://UI/Shop/Skins/007.png" type="Texture" id=14]
-[ext_resource path="res://UI/Shop/Skins/010.png" type="Texture" id=15]
-[ext_resource path="res://UI/Shop/Skins/000.png" type="Texture" id=16]
+[ext_resource path="res://ShopItems/OutdoorSkin_01.tres" type="Resource" id=2]
+[ext_resource path="res://ShopItems/OutdoorSkin_Default.tres" type="Resource" id=3]
+[ext_resource path="res://ShopItems/OutdoorSkin_05.tres" type="Resource" id=4]
+[ext_resource path="res://ShopItems/OutdoorSkin_02.tres" type="Resource" id=5]
+[ext_resource path="res://ShopItems/OutdoorSkin_04.tres" type="Resource" id=6]
+[ext_resource path="res://ShopItems/OutdoorSkin_06.tres" type="Resource" id=7]
+[ext_resource path="res://ShopItems/OutdoorSkin_03.tres" type="Resource" id=8]
+[ext_resource path="res://ShopItems/OutdoorSkin_11.tres" type="Resource" id=9]
+[ext_resource path="res://ShopItems/OutdoorSkin_09.tres" type="Resource" id=10]
+[ext_resource path="res://ShopItems/OutdoorSkin_12.tres" type="Resource" id=11]
+[ext_resource path="res://ShopItems/OutdoorSkin_07.tres" type="Resource" id=12]
+[ext_resource path="res://ShopItems/OutdoorSkin_08.tres" type="Resource" id=13]
+[ext_resource path="res://ShopItems/OutdoorSkin_10.tres" type="Resource" id=14]
+[ext_resource path="res://ShopItems/OutdoorSkin_13.tres" type="Resource" id=15]
+[ext_resource path="res://ShopItems/OutdoorSkin_14.tres" type="Resource" id=16]
 [ext_resource path="res://UI/CoinsAmount.tscn" type="PackedScene" id=17]
 [ext_resource path="res://UI/Images/Box_Square.png" type="Texture" id=18]
 [ext_resource path="res://Fonts/Oswald/Oswald-Bold.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://UI/Images/Icon_Small_Blank_X.png" type="Texture" id=20]
+[ext_resource path="res://ShopItems/OutdoorSkin_15.tres" type="Resource" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -35,7 +36,7 @@ margin_top = -540.0
 margin_right = 359.0
 margin_bottom = 540.0
 script = ExtResource( 1 )
-Skins = [ ExtResource( 16 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 13 ) ]
+Skins = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 21 ) ]
 
 [node name="Background" type="NinePatchRect" parent="."]
 anchor_right = 1.0
@@ -104,6 +105,7 @@ margin_right = 75.0
 margin_bottom = 37.5
 rect_min_size = Vector2( 75, 75 )
 rect_pivot_offset = Vector2( 1847, -11 )
+focus_mode = 0
 icon = ExtResource( 20 )
 flat = true
 icon_align = 1
