@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icon_Star.png-184304e67c8cb4d760c7aeb319ba7cad.stex"
+path="res://.import/ButtonText_Large_Round.png-37e6d28f95bf71a91271d3daf4eaad6b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Images/Icon_Star.png"
-dest_files=[ "res://.import/Icon_Star.png-184304e67c8cb4d760c7aeb319ba7cad.stex" ]
+source_file="res://UI/Images/ButtonText_Large_Round.png"
+dest_files=[ "res://.import/ButtonText_Large_Round.png-37e6d28f95bf71a91271d3daf4eaad6b.stex" ]
 
 [params]
 

@@ -10,20 +10,30 @@ signal SkinRewardSuccess
 signal SkinRewardFailed
 signal SkinRewardClosed
 
+signal SkinPurchased
+
 signal SkinChanged
 
 signal MoneyChanged
 signal BestScoreChanged
 
+signal DataLoaded
+
 var Money: int = 0
 var BestScore: int = 0
+
+var PurchasedSkins = []
 
 enum RewardTypes {
 	NewLife
 }
 
+var SkinDB: SkinDataBase = preload("res://ShopItems/SkinDataBase.tres")
+
 func StartGame():
 	print("Started with No SDK")
+	yield(get_tree().create_timer(1), "timeout")
+	emit_signal("DataLoaded")
 
 func ShowAdvBanner():
 	pass
@@ -53,3 +63,9 @@ func SaveStats(newBestScore, newMoney):
 	
 func ChangeSkin(newSkin: OutdoorSkin):
 	emit_signal("SkinChanged", newSkin)
+	
+func TryBuySkin(skin: OutdoorSkin):
+	emit_signal("SkinPurchased", skin.ID)
+
+func RemoveProgress():
+	pass

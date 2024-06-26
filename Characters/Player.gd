@@ -94,9 +94,11 @@ var ScoreDistance: float = 0
 var IsRestart = false
 
 ### Magnite
-export(float) var MagniteDuration = 30
+export(float) var MagniteDuration = 20
 var MagniteTimePassed = 0
 var MagniteActivated = false
+
+var MagninteProgressInstance: ItemProgressBar = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -301,6 +303,8 @@ func Death():
 
 	Velocity = Vector3.ZERO
 
+	ActivateMagnite(false)
+
 	emit_signal("Death")
 	
 	yield(get_tree().create_timer(DeathTimeout / 2), "timeout")
@@ -335,6 +339,8 @@ func HandleMagnite(delta):
 	if !MagniteActivated: return
 
 	MagniteTimePassed += delta
+	MagninteProgressInstance.UpdateProgress(1 - MagniteTimePassed / MagniteDuration);
+
 	if MagniteTimePassed >= MagniteDuration:
 		ActivateMagnite(false)
 
@@ -342,6 +348,16 @@ func ActivateMagnite(activate: bool):
 	MagniteActivated = activate
 	$CoinsMagniteArea/CoinsMagniteCollision.disabled = !MagniteActivated
 	MagniteTimePassed = 0
+	
+	if MagniteActivated:
+		if MagninteProgressInstance == null:
+			MagninteProgressInstance = preload("res://UI/ItemProgressBar.tscn").instance()
+			get_tree().root.add_child(MagninteProgressInstance)
+			MagninteProgressInstance.UpdateProgress(1)
+	else:
+		if MagninteProgressInstance != null:
+			MagninteProgressInstance.queue_free()
+			MagninteProgressInstance = null
 
 func _on_Collision_area_entered(area):
 	var AreaParent = area.get_parent()

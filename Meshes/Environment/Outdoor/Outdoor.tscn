@@ -14,8 +14,6 @@ material/0 = ExtResource( 2 )
 
 [node name="Grass_hanging" parent="." index="2" instance=ExtResource( 3 )]
 transform = Transform( 0.00307116, -0.349198, 0.509763, 0.171434, 0.490238, 0.33479, -0.593639, 0.139767, 0.0993197, -0.417224, 1.12128, 0.356412 )
-visible = false
 
 [node name="Grass_hanging2" parent="." index="3" instance=ExtResource( 3 )]
 transform = Transform( -0.558123, 0.251835, -0.0829704, 0.171434, 0.490238, 0.33479, 0.202276, 0.27938, -0.512678, 0.4718, 1.34021, 0.477603 )
-visible = false

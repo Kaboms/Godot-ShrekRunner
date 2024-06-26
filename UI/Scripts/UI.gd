@@ -3,7 +3,6 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	StaticSDK.GetSDK().connect("BestScoreChanged", self, "OnBestScoreChanged")
-	StaticSDK.GetSDK().connect("MoneyChanged", self, "OnMoneyChanged")
 
 func Show():
 	$".".show()
@@ -28,3 +27,6 @@ func _on_ShopButton_pressed():
 
 func _on_Shop_Closed():
 	show()
+
+func _on_Button_pressed():
+	StaticSDK.GetSDK().RemoveProgress()

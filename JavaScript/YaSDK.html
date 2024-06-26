@@ -1,7 +1,10 @@
 <!-- Yandex Games SDK -->
 <script src="https://yandex.ru/games/sdk/v2"></script>
 <script>
-ysdk;
+
+leaderboard = null;
+
+ysdk = null;
 tabActivated = null;
 tabDeactivated = null;
 
@@ -12,9 +15,10 @@ skinRewardSuccess = null;
 skinRewardFailed = null;
 skinRewardClosed = null;
 
+onBuySkinCallback = null;
+
 onLoadScoreCallback = null;
 onLoadMoneyCallback = null;
-
 onLoadDataCallback = null;
 
 player = null;
@@ -48,6 +52,8 @@ function initPlayer() {
                     if (ysdk.features.LoadingAPI) {
                         ysdk.features.LoadingAPI.ready();
                         console.log("Ready")
+
+                        showAdvBanner();
                     }
                 })
             });
@@ -62,6 +68,12 @@ function saveStats(newScore, newMoney) {
         money: newMoney,
     }).then(stats_data => {
     });
+
+    ysdk.isAvailableMethod('leaderboards.setLeaderboardScore').then(success =>{
+        if (success){
+            leaderboard.setLeaderboardScore("PlayersScore", newScore)
+        }
+    })
 }
 
 function saveMoney(newMoney){
@@ -76,6 +88,8 @@ function initGame(params) {
     YaGames.init(params)
         .then((_sdk) => {
             ysdk = _sdk;
+            ysdk.getLeaderboards()
+                .then(_lb => leaderboard = _lb);
 
             initPlayer();
         })
@@ -95,15 +109,28 @@ function showAdvBanner(){
 	})
 }
 
-function onBuySkin(newSkins, newMoney){
+function onBuySkin(skin, newSkins, newMoney){
     player.setData({
         skins: newSkins,
     }).then(() => {
         player.setStats({
             money: newMoney,
         }).then(stats_data => {
+            onBuySkinCallback(skin)
         });
     });
+}
+
+function changeSkin(newSkinId){
+    player.setData({
+        skinId: newSkinId,
+    });
+}
+
+function clearSkins(){
+    player.setData({
+        skins: [],
+    })
 }
 
 function showRewardedVideo(rewardType){

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icon_Crown.png-f34c360e7dda6cf10fc937d2632421b1.stex"
+path="res://.import/Icon_Small_Blank_X.png-6aae4311160cb88878a644abe7585b63.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Images/Icon_Crown.png"
-dest_files=[ "res://.import/Icon_Crown.png-f34c360e7dda6cf10fc937d2632421b1.stex" ]
+source_file="res://UI/Images/Icons/Icon_Small_Blank_X.png"
+dest_files=[ "res://.import/Icon_Small_Blank_X.png-6aae4311160cb88878a644abe7585b63.stex" ]
 
 [params]
 

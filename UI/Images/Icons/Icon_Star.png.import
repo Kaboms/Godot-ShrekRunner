@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icon_Small_Blank_Pause.png-992eaf27e08c970d79ae8b8e29415566.stex"
+path="res://.import/Icon_Star.png-d90a00a116bfd131b962dca3873cf6c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Images/Icon_Small_Blank_Pause.png"
-dest_files=[ "res://.import/Icon_Small_Blank_Pause.png-992eaf27e08c970d79ae8b8e29415566.stex" ]
+source_file="res://UI/Images/Icons/Icon_Star.png"
+dest_files=[ "res://.import/Icon_Star.png-d90a00a116bfd131b962dca3873cf6c9.stex" ]
 
 [params]
 

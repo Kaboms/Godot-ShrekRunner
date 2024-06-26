@@ -5,21 +5,21 @@
 [ext_resource path="res://UI/Images/Flags/ru_flag.png" type="Texture" id=3]
 [ext_resource path="res://Audio/cutscene_SwampIntro_loop.ogg" type="AudioStream" id=4]
 [ext_resource path="res://UI/Scripts/UI.gd" type="Script" id=5]
-[ext_resource path="res://UI/Images/Icon_MusicOff.png" type="Texture" id=6]
+[ext_resource path="res://UI/Images/Icons/Icon_MusicOff.png" type="Texture" id=6]
 [ext_resource path="res://UI/Shop/Shop.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/SoundSwitcher.tscn" type="PackedScene" id=8]
-[ext_resource path="res://UI/Images/Icon_MusicOn.png" type="Texture" id=9]
+[ext_resource path="res://UI/Images/Icons/Icon_MusicOn.png" type="Texture" id=9]
 [ext_resource path="res://Levels/ChangeLangButton.gd" type="Script" id=10]
 [ext_resource path="res://UI/Images/Flags/en_flag.png" type="Texture" id=11]
 [ext_resource path="res://Fonts/Oswald/Oswald-SemiBold.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://UI/Scripts/SettingsMenu.gd" type="Script" id=13]
 [ext_resource path="res://UI/Images/Item3.png" type="Texture" id=14]
 [ext_resource path="res://UI/Images/Item2.png" type="Texture" id=15]
-[ext_resource path="res://UI/Images/Icon_Right.png" type="Texture" id=16]
-[ext_resource path="res://UI/Images/Icon_Settings.png" type="Texture" id=17]
-[ext_resource path="res://UI/Images/Icon_Cart.png" type="Texture" id=18]
+[ext_resource path="res://UI/Images/Icons/Icon_Right.png" type="Texture" id=16]
+[ext_resource path="res://UI/Images/Icons/Icon_Settings.png" type="Texture" id=17]
+[ext_resource path="res://UI/Images/Icons/Icon_Cart.png" type="Texture" id=18]
 [ext_resource path="res://UI/CoinsAmount.tscn" type="PackedScene" id=19]
-[ext_resource path="res://UI/Images/Icon_Crown.png" type="Texture" id=21]
+[ext_resource path="res://UI/Images/Icons/Icon_Crown.png" type="Texture" id=21]
 [ext_resource path="res://UI/Images/IconButton_Small_Blank_Square.png" type="Texture" id=22]
 
 [sub_resource type="DynamicFont" id=3]
@@ -288,6 +288,13 @@ rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 21 )
 expand = true
 
+[node name="Button" type="Button" parent="UI"]
+margin_left = 34.0
+margin_top = 22.0
+margin_right = 165.0
+margin_bottom = 134.0
+text = "REMOVE PROGRESS"
+
 [node name="Shop" parent="." instance=ExtResource( 7 )]
 visible = false
 
@@ -297,4 +304,5 @@ visible = false
 [connection signal="pressed" from="UI/DownPanel/TextureRect2/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/DownPanel/TextureRect2/StartButton" to="UI" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/DownPanel/TextureRect3/ShopButton" to="UI" method="_on_ShopButton_pressed"]
+[connection signal="pressed" from="UI/Button" to="UI" method="_on_Button_pressed"]
 [connection signal="Closed" from="Shop" to="UI" method="_on_Shop_Closed"]

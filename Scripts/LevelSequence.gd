@@ -13,5 +13,8 @@ func RemoveObstacles():
 	if has_node("Obstacles"):
 		remove_child(get_node("Obstacles"))
 		
-	if has_node("Coins"):	
+	if has_node("Coins"):
 		remove_child(get_node("Coins"))
+
+	if has_node("Items"):
+		remove_child(get_node("Items"))

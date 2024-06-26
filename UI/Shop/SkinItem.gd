@@ -6,11 +6,19 @@ var ItemOutdoorSkin: OutdoorSkin
 
 var Rewarded = false
 
+var sdk: BaseSDK
+
+var Blocker = preload("res://UI/Blocker.tscn")
+var BlockerInstance = null
+
 func _ready():
-	var sdk = StaticSDK.GetSDK()
+	sdk = StaticSDK.GetSDK()
 	sdk.connect("SkinRewardSuccess", self, "SkinRewardSuccess")
 	sdk.connect("SkinRewardFailed", self, "SkinRewardFailed")
 	sdk.connect("SkinRewardClosed", self, "SkinRewardClosed")
+
+	sdk.connect("SkinPurchased", self, "OnSkinPurchased")
+
 
 func SetSkin(skin: OutdoorSkin):
 	ItemOutdoorSkin = skin
@@ -38,20 +46,47 @@ func UpdateLabel():
 
 
 func _on_TextureButton_pressed():
+	if StaticSDK.GetSDK().Money < ItemOutdoorSkin.Price: return
+
 	if ItemOutdoorSkin.Purchased:
 		StaticSDK.GetSDK().ChangeSkin(ItemOutdoorSkin)
+		return
 
+	BlockerInstance = Blocker.instance()
+	get_tree().root.add_child(BlockerInstance) 
 	if ItemOutdoorSkin.ForAdversation:
 		StaticSDK.GetSDK().ShowSkinRewardedVideo(ItemOutdoorSkin.ID)
-		
+		return
+
+	sdk.TryBuySkin(ItemOutdoorSkin)
+
 func SkinRewardSuccess(skinId):
 	Rewarded = skinId == ItemOutdoorSkin.ID
 
 func SkinRewardClosed(skinId):
+	if skinId != ItemOutdoorSkin.ID: return
+
 	if Rewarded:
 		ItemOutdoorSkin.Purchased = true
 		UpdateLabel()
+
+	RemoveBlocker()
+
 	Rewarded = false
 
-func SkinRewardFailed():
-	pass
+func SkinRewardFailed(skinId):
+	if skinId != ItemOutdoorSkin.ID: return
+
+func OnSkinPurchased(skinId):
+	if skinId != ItemOutdoorSkin.ID: return
+
+	RemoveBlocker()
+
+	ItemOutdoorSkin.Purchased = true
+	UpdateLabel()
+	
+func RemoveBlocker():
+	if BlockerInstance == null: return
+
+	BlockerInstance.queue_free()
+	BlockerInstance = null

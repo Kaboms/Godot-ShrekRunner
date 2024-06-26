@@ -5,7 +5,7 @@
 [ext_resource path="res://UI/Shop/SkinItem.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/Oswald/Oswald-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://UI/Images/ButtonText_Large_Orange_Round.png" type="Texture" id=5]
-[ext_resource path="res://UI/Images/Icon_Film.png" type="Texture" id=6]
+[ext_resource path="res://UI/Images/Icons/Icon_Film.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32

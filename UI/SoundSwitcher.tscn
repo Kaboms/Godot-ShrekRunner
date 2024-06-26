@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Fonts/Oswald/Oswald-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Scripts/SoundButton.gd" type="Script" id=2]
-[ext_resource path="res://UI/Images/Icon_SoundOn.png" type="Texture" id=3]
-[ext_resource path="res://UI/Images/Icon_SoundOff.png" type="Texture" id=4]
+[ext_resource path="res://UI/Images/Icons/Icon_SoundOn.png" type="Texture" id=3]
+[ext_resource path="res://UI/Images/Icons/Icon_SoundOff.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 

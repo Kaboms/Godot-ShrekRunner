@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Icon_Exit.png-f7c5cf2c3ec42b296c603ea56d25af7d.stex"
+path="res://.import/Icon_Small_Blank_Pause.png-cd74d36cc97aa2ec2adde95a94668714.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Images/Icon_Exit.png"
-dest_files=[ "res://.import/Icon_Exit.png-f7c5cf2c3ec42b296c603ea56d25af7d.stex" ]
+source_file="res://UI/Images/Icons/Icon_Small_Blank_Pause.png"
+dest_files=[ "res://.import/Icon_Small_Blank_Pause.png-cd74d36cc97aa2ec2adde95a94668714.stex" ]
 
 [params]
 
