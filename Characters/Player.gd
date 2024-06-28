@@ -131,6 +131,9 @@ func _physics_process(delta):
 			if (collider.get_collision_layer_bit(2)) && collision.normal.z < -0.5:
 				Death()
 				Velocity = move_and_slide(Vector3.ZERO, Vector3.UP)
+				
+				if collider is MoveableObstacle:
+					collider.Destruct()
 				break
 
 func HandleMovement(delta):

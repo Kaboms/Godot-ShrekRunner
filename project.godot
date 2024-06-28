@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/LevelSequence.gd"
 }, {
+"base": "Spatial",
+"class": "MoveableObstacle",
+"language": "GDScript",
+"path": "res://Obstacles/MoveableObstacle.gd"
+}, {
 "base": "Resource",
 "class": "OutdoorSkin",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "ItemProgressBar": "",
 "LevelManager": "",
 "LevelSequence": "",
+"MoveableObstacle": "",
 "OutdoorSkin": "",
 "Player": "",
 "SkinDataBase": "",
@@ -87,8 +93,10 @@ settings/fps/force_fps=60
 
 [display]
 
-window/size/width=720
-window/size/height=1080
+window/size/width=1080
+window/size/height=1920
+window/size/test_width=540
+window/size/test_height=960
 window/vsync/use_vsync=false
 window/handheld/orientation="portrait"
 window/stretch/mode="viewport"

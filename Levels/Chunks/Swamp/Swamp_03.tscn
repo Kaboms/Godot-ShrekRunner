@@ -20,6 +20,7 @@ LevelLenght = 24.0
 
 [node name="DebugCube" parent="." instance=ExtResource( 2 )]
 transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
+visible = false
 
 [node name="Landscape" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.40808e-08, 0, 1.62344, 0, 1.00845, 0, -1.00845, 0, -7.0963e-08, 0, 0, 0 )

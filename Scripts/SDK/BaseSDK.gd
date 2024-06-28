@@ -23,6 +23,7 @@ var Money: int = 0
 var BestScore: int = 0
 
 var PurchasedSkins = []
+var SelectedSkinId = -1
 
 enum RewardTypes {
 	NewLife
@@ -61,8 +62,9 @@ func SaveStats(newBestScore, newMoney):
 	SetBestScore(newBestScore)
 	SetMoney(newMoney)
 	
-func ChangeSkin(newSkin: OutdoorSkin):
-	emit_signal("SkinChanged", newSkin)
+func SetSkin(newSkinId):
+	SelectedSkinId = newSkinId
+	emit_signal("SkinChanged", SelectedSkinId)
 	
 func TryBuySkin(skin: OutdoorSkin):
 	emit_signal("SkinPurchased", skin.ID)

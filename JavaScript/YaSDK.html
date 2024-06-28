@@ -15,7 +15,7 @@ skinRewardSuccess = null;
 skinRewardFailed = null;
 skinRewardClosed = null;
 
-onBuySkinCallback = null;
+onSetDataCallback = null;
 
 onLoadScoreCallback = null;
 onLoadMoneyCallback = null;
@@ -68,7 +68,9 @@ function saveStats(newScore, newMoney) {
         money: newMoney,
     }).then(stats_data => {
     });
+}
 
+function setNewMaxScore(newScore) {
     ysdk.isAvailableMethod('leaderboards.setLeaderboardScore').then(success =>{
         if (success){
             leaderboard.setLeaderboardScore("PlayersScore", newScore)
@@ -77,9 +79,10 @@ function saveStats(newScore, newMoney) {
 }
 
 function saveMoney(newMoney){
-    player.setStats({
+    player.incrementStats({
         money: newMoney,
     }).then(stats_data => {
+        onLoadMoneyCallback(newMoney)
     });
 }
 
@@ -109,28 +112,13 @@ function showAdvBanner(){
 	})
 }
 
-function onBuySkin(skin, newSkins, newMoney){
+function setData(currentSkinId, Skins){
     player.setData({
-        skins: newSkins,
+        skins: Skins,
+        skinId: currentSkinId,
     }).then(() => {
-        player.setStats({
-            money: newMoney,
-        }).then(stats_data => {
-            onBuySkinCallback(skin)
-        });
+        //onSetDataCallback();
     });
-}
-
-function changeSkin(newSkinId){
-    player.setData({
-        skinId: newSkinId,
-    });
-}
-
-function clearSkins(){
-    player.setData({
-        skins: [],
-    })
 }
 
 function showRewardedVideo(rewardType){

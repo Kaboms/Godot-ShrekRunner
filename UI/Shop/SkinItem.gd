@@ -31,7 +31,7 @@ func UpdateLabel():
 	$VBoxContainer/TextureButton/Price.show()
 	
 	if ItemOutdoorSkin.Purchased:
-		$VBoxContainer/TextureButton/Price.set_text(tr("USE"))
+		$VBoxContainer/TextureButton/Price.set_text(tr("Use"))
 		return
 
 	if ItemOutdoorSkin.ForAdversation:
@@ -42,14 +42,14 @@ func UpdateLabel():
 	if (ItemOutdoorSkin.Price > 0):
 		$VBoxContainer/TextureButton/Price.set_text(str(ItemOutdoorSkin.Price))
 	else:
-		$VBoxContainer/TextureButton/Price.set_text(tr("FREE"))
+		$VBoxContainer/TextureButton/Price.set_text(tr("Free"))
 
 
 func _on_TextureButton_pressed():
 	if StaticSDK.GetSDK().Money < ItemOutdoorSkin.Price: return
 
 	if ItemOutdoorSkin.Purchased:
-		StaticSDK.GetSDK().ChangeSkin(ItemOutdoorSkin)
+		StaticSDK.GetSDK().SetSkin(ItemOutdoorSkin.ID)
 		return
 
 	BlockerInstance = Blocker.instance()

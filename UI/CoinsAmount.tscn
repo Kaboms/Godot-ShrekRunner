@@ -5,7 +5,7 @@
 [ext_resource path="res://UI/Scripts/CoinsAmount.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 32
+size = 55
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -15,8 +15,9 @@ margin_right = 312.0
 margin_bottom = 50.0
 
 [node name="Coins" type="Label" parent="."]
+margin_top = 21.0
 margin_right = 200.0
-margin_bottom = 49.0
+margin_bottom = 103.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 0 )
@@ -28,12 +29,12 @@ script = ExtResource( 3 )
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 margin_left = 204.0
 margin_right = 204.0
-margin_bottom = 50.0
+margin_bottom = 125.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 208.0
-margin_right = 258.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_right = 333.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 125, 125 )
 texture = ExtResource( 2 )
 expand = true

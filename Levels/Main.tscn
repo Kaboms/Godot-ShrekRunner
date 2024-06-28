@@ -23,11 +23,11 @@
 [ext_resource path="res://UI/Images/IconButton_Small_Blank_Square.png" type="Texture" id=22]
 
 [sub_resource type="DynamicFont" id=3]
-size = 26
+size = 55
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 32
+size = 55
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
@@ -69,10 +69,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -150.0
-margin_right = 150.0
-margin_bottom = 228.0
+margin_left = -300.0
+margin_top = -367.5
+margin_right = 300.0
+margin_bottom = 367.5
 texture = ExtResource( 14 )
 expand = true
 
@@ -81,24 +81,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -120.0
-margin_right = 110.0
-margin_bottom = 120.0
+margin_left = -224.0
+margin_top = -309.5
+margin_right = 224.0
+margin_bottom = 309.5
 
 [node name="SoundButton" parent="UI/SettingsMenu/VBoxContainer" instance=ExtResource( 8 )]
-margin_right = 220.0
+margin_right = 448.0
+margin_bottom = 125.0
 
 [node name="VSplitContainer" type="VSplitContainer" parent="UI/SettingsMenu/VBoxContainer"]
-margin_top = 54.0
-margin_right = 220.0
-margin_bottom = 69.0
+margin_top = 129.0
+margin_right = 448.0
+margin_bottom = 144.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="MusicButton" parent="UI/SettingsMenu/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 73.0
-margin_right = 220.0
-margin_bottom = 123.0
+margin_top = 148.0
+margin_right = 448.0
+margin_bottom = 273.0
 SoundBusName = "Music"
 SoundOnText = "Music ON"
 SoundOffText = "Music OFF"
@@ -106,16 +107,16 @@ SoundOnIcon = ExtResource( 9 )
 SoundOffIcon = ExtResource( 6 )
 
 [node name="VSplitContainer2" type="VSplitContainer" parent="UI/SettingsMenu/VBoxContainer"]
-margin_top = 127.0
-margin_right = 220.0
-margin_bottom = 142.0
+margin_top = 277.0
+margin_right = 448.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="ChangeLangButton" type="Button" parent="UI/SettingsMenu/VBoxContainer"]
-margin_top = 146.0
-margin_right = 220.0
-margin_bottom = 246.0
-rect_min_size = Vector2( 100, 100 )
+margin_top = 296.0
+margin_right = 448.0
+margin_bottom = 496.0
+rect_min_size = Vector2( 200, 200 )
 focus_mode = 0
 icon = ExtResource( 3 )
 flat = true
@@ -125,16 +126,16 @@ script = ExtResource( 10 )
 LangsIcons = [ ExtResource( 3 ), ExtResource( 11 ) ]
 
 [node name="VSplitContainer3" type="VSplitContainer" parent="UI/SettingsMenu/VBoxContainer"]
-margin_top = 250.0
-margin_right = 220.0
-margin_bottom = 265.0
+margin_top = 500.0
+margin_right = 448.0
+margin_bottom = 515.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="OkButton" type="TextureButton" parent="UI/SettingsMenu/VBoxContainer"]
-margin_top = 269.0
-margin_right = 220.0
-margin_bottom = 319.0
-rect_min_size = Vector2( 200, 50 )
+margin_top = 519.0
+margin_right = 448.0
+margin_bottom = 619.0
+rect_min_size = Vector2( 200, 100 )
 rect_pivot_offset = Vector2( 1184, -389 )
 focus_mode = 0
 texture_normal = ExtResource( 15 )
@@ -157,16 +158,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -258.0
-margin_top = -272.0
-margin_right = 258.0
-margin_bottom = -128.0
+margin_left = -483.0
+margin_top = -480.0
+margin_right = 483.0
+margin_bottom = -180.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="TextureRect" type="TextureRect" parent="UI/DownPanel"]
-margin_right = 150.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 150, 0 )
+margin_right = 300.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 0 )
 texture = ExtResource( 22 )
 expand = true
 
@@ -175,10 +176,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -50.0
-margin_right = 50.0
-margin_bottom = 50.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
 focus_mode = 0
 icon = ExtResource( 17 )
 flat = true
@@ -186,16 +187,16 @@ icon_align = 1
 expand_icon = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="UI/DownPanel"]
-margin_left = 154.0
-margin_right = 179.0
-margin_bottom = 144.0
+margin_left = 304.0
+margin_right = 329.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="TextureRect2" type="TextureRect" parent="UI/DownPanel"]
-margin_left = 183.0
-margin_right = 333.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 150, 0 )
+margin_left = 333.0
+margin_right = 633.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 0 )
 texture = ExtResource( 22 )
 expand = true
 
@@ -204,10 +205,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -50.0
-margin_right = 50.0
-margin_bottom = 50.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
 focus_mode = 0
 icon = ExtResource( 16 )
 flat = true
@@ -215,16 +216,16 @@ icon_align = 1
 expand_icon = true
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="UI/DownPanel"]
-margin_left = 337.0
-margin_right = 362.0
-margin_bottom = 144.0
+margin_left = 637.0
+margin_right = 662.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="TextureRect3" type="TextureRect" parent="UI/DownPanel"]
-margin_left = 366.0
-margin_right = 516.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 150, 0 )
+margin_left = 666.0
+margin_right = 966.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 0 )
 texture = ExtResource( 22 )
 expand = true
 
@@ -233,10 +234,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -50.0
-margin_right = 50.0
-margin_bottom = 50.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
 focus_mode = 0
 icon = ExtResource( 18 )
 flat = true
@@ -246,28 +247,30 @@ expand_icon = true
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -283.0
+margin_left = -378.0
 margin_top = 25.0
-margin_right = -25.0
-margin_bottom = 150.0
+margin_right = -96.0
+margin_bottom = 293.0
 
 [node name="CoinsCounterContainer" parent="UI/VBoxContainer" instance=ExtResource( 19 )]
-margin_right = 258.0
+margin_right = 333.0
+margin_bottom = 125.0
 
 [node name="VSplitContainer" type="VSplitContainer" parent="UI/VBoxContainer"]
-margin_top = 54.0
-margin_right = 258.0
-margin_bottom = 64.0
+margin_top = 129.0
+margin_right = 333.0
+margin_bottom = 139.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="ScoreCounterContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
-margin_top = 68.0
-margin_right = 258.0
-margin_bottom = 118.0
+margin_top = 143.0
+margin_right = 333.0
+margin_bottom = 268.0
 
 [node name="MaxScore" type="Label" parent="UI/VBoxContainer/ScoreCounterContainer"]
+margin_top = 21.0
 margin_right = 200.0
-margin_bottom = 49.0
+margin_bottom = 103.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 200, 0 )
@@ -278,25 +281,33 @@ align = 2
 [node name="HSplitContainer" type="HSplitContainer" parent="UI/VBoxContainer/ScoreCounterContainer"]
 margin_left = 204.0
 margin_right = 204.0
-margin_bottom = 50.0
+margin_bottom = 125.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/ScoreCounterContainer"]
 margin_left = 208.0
-margin_right = 258.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_right = 333.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 125, 125 )
 texture = ExtResource( 21 )
 expand = true
 
 [node name="Button" type="Button" parent="UI"]
 margin_left = 34.0
 margin_top = 22.0
-margin_right = 165.0
-margin_bottom = 134.0
+margin_right = 323.0
+margin_bottom = 234.0
 text = "REMOVE PROGRESS"
 
 [node name="Shop" parent="." instance=ExtResource( 7 )]
 visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -960.0
+margin_right = 540.0
+margin_bottom = 960.0
 
 [connection signal="pressed" from="UI/SettingsMenu/VBoxContainer/ChangeLangButton" to="UI/SettingsMenu/VBoxContainer/ChangeLangButton" method="_on_ChangeLangButton_pressed"]
 [connection signal="pressed" from="UI/SettingsMenu/VBoxContainer/OkButton" to="UI" method="_on_OkButton_pressed"]

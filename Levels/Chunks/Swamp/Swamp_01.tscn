@@ -19,6 +19,7 @@ LevelLenght = 20.0
 
 [node name="Floor" parent="." instance=ExtResource( 2 )]
 transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
+visible = false
 
 [node name="Landscape" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.40808e-08, 0, 1.37437, 0, 1.00845, 0, -1.00845, 0, -6.00755e-08, 0, 0, 0 )
@@ -107,9 +108,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 [node name="RandomSpawner" parent="Obstacles" instance=ExtResource( 10 )]
 transform = Transform( -1.31984e-08, -7.17801e-10, -0.30239, -0.0164214, 0.301943, 0, 0.301943, 0.0164214, -1.32179e-08, -4.9613, 0.398193, -0.127866 )
 SpatialToSpawn = ExtResource( 11 )
-SpawnChance = 0.2
+SpawnChance = 0.25
 
 [node name="Items" type="Spatial" parent="."]
 
-[node name="potion_maginte" parent="Items" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.547315, 0.551298, 1.50201 )
+[node name="RandomSpawner" parent="Items" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -1.5 )
+SpatialToSpawn = ExtResource( 7 )
+SpawnChance = 0.1

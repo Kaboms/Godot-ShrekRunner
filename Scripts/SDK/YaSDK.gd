@@ -11,8 +11,6 @@ var SkinRewardSuccessCallback = JavaScript.create_callback(self, "OnSkinRewardSu
 var SkinRewardFailedCallback = JavaScript.create_callback(self, "OnSkinRewardFailed")
 var SkinRewardClosedCallback = JavaScript.create_callback(self, "OnSkinRewardClosed")
 
-var OnBuySkinCallback = JavaScript.create_callback(self, "OnBuySkin")
-
 var OnLoadScoreCallback = JavaScript.create_callback(self, "OnLoadScore")
 var OnLoadMoneyCallback = JavaScript.create_callback(self, "OnLoadMoney")
 var OnLoadDataCallback = JavaScript.create_callback(self, "OnLoadData")
@@ -37,9 +35,7 @@ func _ready():
 	window.skinRewardSuccess = SkinRewardSuccessCallback
 	window.skinRewardFailed = SkinRewardFailedCallback
 	window.skinRewardClosed = SkinRewardClosedCallback
-	
-	window.onBuySkinCallback = OnBuySkinCallback
-	
+
 	window.onLoadScoreCallback = OnLoadScoreCallback
 	window.onLoadMoneyCallback = OnLoadMoneyCallback
 	window.onLoadDataCallback = OnLoadDataCallback
@@ -78,13 +74,13 @@ func OnSkinRewardSuccess(args):
 	var skinId = args[0]
 	PurchasedSkins.append(skinId)
 	
-	var jsSkins = JavaScript.create_object("Array")
-	for purchasedSkin in PurchasedSkins:
-		jsSkins.push(purchasedSkin)
+	print("Purchase skin: " + str(PurchasedSkins))
 	
-	window.onBuySkin(skinId, jsSkins, Money)
+	window.setData(skinId, GetJsSkins())
 	
 	emit_signal("SkinRewardSuccess", args[0])
+
+	ChangeSkin(skinId)
 
 func OnSkinRewardFailed(args):
 	emit_signal("SkinRewardFailed", args[0])
@@ -110,23 +106,25 @@ func SaveStats(newBestScore, newMoney):
 	SetBestScore(newBestScore)
 	SetMoney(newMoney)
 
-func TryBuySkin(skin: OutdoorSkin):
-	if Money < skin.Price: return
-
-	SetMoney(Money - skin.Price)
-	
-	PurchasedSkins.append(skin.ID)
-	
+func GetJsSkins():
 	var jsSkins = JavaScript.create_object("Array")
 	for purchasedSkin in PurchasedSkins:
 		jsSkins.push(purchasedSkin)
-	
-	window.onBuySkin(skin.ID, jsSkins, Money)
+	return jsSkins
 
-func OnBuySkin(args):
-	var skinId = args[0]
+func TryBuySkin(skin: OutdoorSkin):
+	if Money < skin.Price: return
+
+	PurchasedSkins.append(skin.ID)
+
+	print("Purchase skin: " + str(PurchasedSkins))
+
+	window.setData(skin.ID, GetJsSkins())
+	window.saveMoney(Money)
+
+	emit_signal("SkinPurchased", skin.ID)
 	
-	emit_signal("SkinPurchased", skinId)
+	ChangeSkin(skin.ID)
 
 func OnLoadData(args):
 	TranslationServer.set_locale(LangReferences.get(window.ysdk.environment.i18n.lang, 'en'))
@@ -134,11 +132,12 @@ func OnLoadData(args):
 	if args.size() != 0:
 		if args[0].skins:
 			PurchasedSkins = []
-			for skinIndex in range(0, args[0].skins.length):
+			for skinIndex in range(args[0].skins.length):
 				PurchasedSkins.append(args[0].skins[skinIndex])
+			print(PurchasedSkins)
 
 		if args[0].skinId != null:
-			emit_signal("SkinChanged", SkinDB.SkinsDict[args[0].skinId])
+			ChangeSkin(args[0].skinId)
 
 	print("DataLoaded")
 	emit_signal("DataLoaded")
@@ -148,6 +147,10 @@ func RemoveProgress():
 
 	window.clearSkins()
 
-func ChangeSkin(newSkin: OutdoorSkin):
-	window.changeSkin(newSkin.ID)
-	emit_signal("SkinChanged", newSkin)
+func SetSkin(newSkinId):
+	ChangeSkin(newSkinId)
+	window.setData(SelectedSkinId, GetJsSkins())
+
+func ChangeSkin(newSkinId):
+	SelectedSkinId = newSkinId
+	emit_signal("SkinChanged", SelectedSkinId)

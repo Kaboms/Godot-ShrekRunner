@@ -17,8 +17,9 @@ func _ready():
 	LevelsToPlace.shuffle()
 	
 	OffsetToUpdate += OffsetZ
-	## TODO Will replace to 5 for in 5
-	for level in LevelsToPlace:
+	
+	for i in range(4):
+		var level = LevelsToPlace[i]
 		var LevelInstance: LevelSequence = level.instance()
 		add_child(LevelInstance)
 		
@@ -27,6 +28,7 @@ func _ready():
 		LevelInstance.transform.origin.z = OffsetZ + LevelInstance.LevelLenght / 2
 		LevelInstance.OffsetZ = OffsetZ
 		OffsetZ += LevelInstance.LevelLenght
+		print(OffsetZ)
 
 	OffsetToUpdate += LevelInstances[0].LevelLenght
 	OffsetToUpdate += LevelInstances[1].LevelLenght
@@ -55,4 +57,4 @@ func StartGame():
 func Continue():
 	for level in LevelInstances:
 		if $Shrek.transform.origin.z > level.OffsetZ:
-			level.RemoveObstacles()
+			level.Clear()
