@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeEnd.glb" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeStart.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
+[ext_resource path="res://Meshes/Environment/Water/M_Water.tres" type="Material" id=5]
+[ext_resource path="res://Meshes/Environment/Bridge/dock_swamp.glb" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.62899, 5.70733, 1.59751 )
+
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+script = ExtResource( 4 )
+LevelLenght = 30.0
+
+[node name="EnterArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.399, 0, -5.68434e-14 )
+
+[node name="CollisionShape" type="CollisionShape" parent="EnterArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.70406, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugCube" parent="." instance=ExtResource( 2 )]
+transform = Transform( 15, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
+visible = false
+
+[node name="WaterLandscapeStart" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.40484, 0, -6.37975e-07 )
+
+[node name="WaterLandscapeEnd" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.44373, 0, -3.25376e-07 )
+
+[node name="Foliage" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="Obstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="MoveableObstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="Coins" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 15.3489, 0, 0, 0, 1, 0, 0, 0, 4.01769, 0, -0.323019, 0 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="dock_swamp" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, -2.48745, 0, 1.0873e-07 )
+
+[node name="dock_swamp5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, 1.87437, 0, -5.49888e-07 )
+
+[node name="dock_swamp6" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, 6.34852, 0, -1.22546e-06 )
+
+[node name="dock_swamp7" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, 10.7786, 0, -1.89438e-06 )
+
+[node name="dock_swamp2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, -4.367, 0, 1.5 )
+
+[node name="dock_swamp3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, -8.76487, 0, 1.5 )
+
+[node name="dock_swamp4" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -9.05975e-08, 0, 1, 0, 1.50996e-07, 0, -0.6, -13.148, 0, 1.5 )
+
+[connection signal="body_entered" from="EnterArea" to="." method="_on_EnterArea_body_entered"]

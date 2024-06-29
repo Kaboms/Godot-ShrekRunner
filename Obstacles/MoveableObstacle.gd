@@ -2,7 +2,7 @@ extends Spatial
 
 class_name MoveableObstacle
 
-export(float) var Speed = 10
+export(float) var Speed = 13
 
 export(bool) var Activated = false
 
@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	if !Activated: return
 
-	transform.origin.x -= Speed * delta
+	transform.origin.x -= Speed * delta * Global.SpeedAlpha
 
 func Destruct():
 	#TODO add VFX

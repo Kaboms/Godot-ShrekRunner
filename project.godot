@@ -86,6 +86,7 @@ default_bus_layout="res://Audiobuslayout.tres"
 
 StaticSDK="*res://Scripts/SDK/StaticSdk.gd"
 SoundManager="*res://Audio/SoundManager.gd"
+Global="*res://Scripts/Global.gd"
 
 [debug]
 

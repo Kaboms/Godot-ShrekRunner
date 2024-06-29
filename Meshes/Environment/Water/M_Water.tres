@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Meshes/Environment/Water/waterfall.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded,diffuse_burley,specular_disabled;
+
+uniform sampler2D AlbedoTexture;
+uniform vec2 Scale = vec2(1.0);
+uniform vec2 MoveVector = vec2(0.25, 0.00);
+
+void fragment() {
+	vec2 uv = UV * Scale - MoveVector * TIME;
+	ALBEDO = texture(AlbedoTexture, uv).rgb;
+	ALPHA = texture(AlbedoTexture, uv).a;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/Scale = Vector2( -4.147, 0.83 )
+shader_param/MoveVector = Vector2( 0.25, 0 )
+shader_param/AlbedoTexture = ExtResource( 1 )

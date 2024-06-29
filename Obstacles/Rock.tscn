@@ -4,8 +4,9 @@
 [ext_resource path="res://Components/NodeRotator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Obstacles/MoveableObstacle.gd" type="Script" id=3]
 
-[sub_resource type="SphereShape" id=1]
-radius = 1.18055
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.480904
+height = 1.11474
 
 [node name="Rock" type="StaticBody"]
 collision_layer = 5
@@ -13,12 +14,12 @@ collision_mask = 5
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.8, 0 )
+transform = Transform( -4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -0.174445, 0.8, -7.62524e-09 )
 shape = SubResource( 1 )
 
-[node name="rock_on_rope" parent="CollisionShape" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+[node name="rock_on_rope" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -4.37114e-08, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -4.37114e-08, 3.49691e-08, 0.8, 0 )
 
-[node name="NodeRotator" parent="CollisionShape/rock_on_rope" instance=ExtResource( 2 )]
+[node name="NodeRotator" parent="rock_on_rope" instance=ExtResource( 2 )]
 RotationSpeed = 3
-RotationAxis = Vector3( 1, 0, 0 )
+RotationAxis = Vector3( 0, 0, 1 )

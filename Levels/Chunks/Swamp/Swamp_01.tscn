@@ -113,6 +113,6 @@ SpawnChance = 0.25
 [node name="Items" type="Spatial" parent="."]
 
 [node name="RandomSpawner" parent="Items" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5, -1.5 )
 SpatialToSpawn = ExtResource( 7 )
-SpawnChance = 0.1
+SpawnChance = 0.15

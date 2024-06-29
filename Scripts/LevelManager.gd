@@ -28,7 +28,6 @@ func _ready():
 		LevelInstance.transform.origin.z = OffsetZ + LevelInstance.LevelLenght / 2
 		LevelInstance.OffsetZ = OffsetZ
 		OffsetZ += LevelInstance.LevelLenght
-		print(OffsetZ)
 
 	OffsetToUpdate += LevelInstances[0].LevelLenght
 	OffsetToUpdate += LevelInstances[1].LevelLenght

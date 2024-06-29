@@ -15,6 +15,9 @@ func Clear():
 	if has_node("Obstacles"):
 		remove_child(get_node("Obstacles"))
 		
+	if has_node("MoveableObstacles"):
+		remove_child(get_node("MoveableObstacles"))
+		
 	if has_node("Coins"):
 		remove_child(get_node("Coins"))
 

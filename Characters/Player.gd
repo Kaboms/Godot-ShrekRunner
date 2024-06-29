@@ -25,12 +25,16 @@ var Coins = 0
 ### MOVEMENT
 export(float) var SpeedIncreaseDelta = 0.005
 export(float) var Speed = 7
+
 export(int) var MaxSpeed = 10
-export(int) var StrafeSpeed = 6
+export(int) var StrafeSpeed = 10
 export(float) var StrafeDistance = 1.5
 
-export var JumpImpulse = 10
-export var Gravity = -0.5
+export var MaxJumpHeight = 2.1
+export var JumpDistance = 0.4
+var Gravity = 0
+
+var JumpImpulse 
 
 var Velocity: Vector3 = Vector3.ZERO
 
@@ -102,10 +106,14 @@ var MagninteProgressInstance: ItemProgressBar = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	JumpImpulse = 4 * MaxJumpHeight / JumpDistance
+	Gravity = 0.5 / MaxJumpHeight
+	
 	ForwardVector = get_global_transform().basis
 	$AnimationPlayer.Character = $"."
 
 func _process(delta):
+	Global.SpeedAlpha = Speed / MaxSpeed;
 	HandleCameraSetup(delta)
 	HandleMagnite(delta)
 
@@ -150,9 +158,9 @@ func HandleMovement(delta):
 			Velocity.z = Speed
 			
 			if StrafeDirection != 0:
-				DistanceToRoad = (Roads[MoveRoad] - transform.origin.x) * StrafeDirection 
-				if DistanceToRoad >= 0:
-					Velocity.x = StrafeSpeed * StrafeDirection
+				DistanceToRoad = (Roads[MoveRoad] - transform.origin.x) * StrafeDirection
+				if DistanceToRoad >= 0.01:
+					Velocity.x = StrafeSpeed * StrafeDirection * Global.SpeedAlpha * max(DistanceToRoad, 0.25)
 				else:
 					transform.origin.x = Roads[MoveRoad]
 					StrafeDirection = 0
@@ -173,8 +181,11 @@ func HandleMovement(delta):
 				IsJump = false
 				Landed()
 
-	Velocity.y += Gravity
-
+	if IsJump:
+		Velocity.y -= pow((JumpImpulse * Global.SpeedAlpha), 2) * Gravity * delta
+	else:
+		Velocity.y = -9.8
+	
 	Velocity = move_and_slide(Velocity,  Vector3.UP)
 
 func HandleRoll(delta):
@@ -228,9 +239,9 @@ func MoveRight():
 	emit_signal("MoveRight")
 
 func Jump():
-	if !IsRoll && is_on_floor() && !IsDeath:
+	if !IsRoll && !IsJump && !IsDeath:
 		$AnimationPlayer.PlayJump()
-		Velocity.y = JumpImpulse
+		Velocity.y = JumpImpulse * Global.SpeedAlpha
 		IsJump = true
 		emit_signal("Jump")
 

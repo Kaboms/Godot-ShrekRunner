@@ -1,7 +1,10 @@
 extends Spatial
 
 func _ready():
-	StaticSDK.GetSDK().connect("SkinChanged", self, "OnSkinChanged")
+	var sdk = StaticSDK.GetSDK()
+	sdk.connect("SkinChanged", self, "OnSkinChanged")
+
+	SetSkin(sdk.SkinDB.SkinsDict[sdk.SelectedSkinId])
 
 func OnSkinChanged(skinId):
 	SetSkin(StaticSDK.GetSDK().SkinDB.SkinsDict[skinId])
