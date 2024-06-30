@@ -17,6 +17,7 @@ func _on_SettingsButton_pressed():
 func _on_OkButton_pressed():
 	$SettingsMenu.hide()
 	$DownPanel.show()
+	StaticSDK.GetSDK().SetData()
 
 func OnBestScoreChanged(newBestScore):
 	$VBoxContainer/ScoreCounterContainer/MaxScore.set_text(str(newBestScore))

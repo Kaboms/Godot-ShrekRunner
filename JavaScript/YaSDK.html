@@ -112,10 +112,12 @@ function showAdvBanner(){
 	})
 }
 
-function setData(currentSkinId, Skins){
+function setData(currentSkinId, inSkins, inMuteSound, inMuteMusic){
     player.setData({
-        skins: Skins,
+        skins: inSkins,
         skinId: currentSkinId,
+        muteSound: inMuteSound,
+        muteMusic: inMuteMusic
     }).then(() => {
         //onSetDataCallback();
     });

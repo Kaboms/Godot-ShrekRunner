@@ -71,3 +71,9 @@ func TryBuySkin(skin: OutdoorSkin):
 
 func RemoveProgress():
 	pass
+	
+func SetData():
+	pass
+	
+func SaveBestScore():
+	pass

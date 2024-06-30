@@ -13,7 +13,7 @@ func _ready():
 func _on_Button_pressed():
 	hide()
 	emit_signal("Closed")
-	var asat = []
+	sdk.SetData()
 
 func OnDataLoaded():
 	for skin in SkinDB.SkinsDict.values():

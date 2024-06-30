@@ -1,0 +1,189 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeEnd.glb" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeStart.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
+[ext_resource path="res://Areas/WaterArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Meshes/Environment/Bridge/Bridge.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Coins/Coin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/Coins/CoinArc.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Obstacles/MoveableObstacle.gd" type="Script" id=9]
+[ext_resource path="res://Obstacles/LogBridge.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Obstacles/BlockFrameRoll.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeMiddle.glb" type="PackedScene" id=12]
+[ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=14]
+[ext_resource path="res://Meshes/Environment/Foliage/FlowerPatchPink/flower_patch.glb" type="PackedScene" id=15]
+[ext_resource path="res://Meshes/Environment/SignNoSwim/sign_noswim.glb" type="PackedScene" id=16]
+[ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=17]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.62899, 5.70733, 1.59751 )
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+script = ExtResource( 4 )
+LevelLenght = 44.0
+
+[node name="EnterArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0577, 0, -1.13687e-13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="EnterArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.70406, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+transform = Transform( 22, 0, 0, 0, 1, 0, 0, 0, 3, 0, -2.8, 0 )
+visible = false
+
+[node name="Floor2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.283, 0, 0, 0, 1, 0, 0, 0, 3, 21.308, -1, 5.68434e-14 )
+visible = false
+
+[node name="Bridges" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.72516, 0, 0 )
+
+[node name="Bridge" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -13, -0.2, 0 )
+
+[node name="Bridge3" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -7, -0.2, -5.24537e-07 )
+
+[node name="Bridge2" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -10, -0.2, -1.5 )
+
+[node name="Bridge8" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -10, -0.2, 1.5 )
+
+[node name="Bridge7" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 8.74228e-08, 0, 8.74228e-08, 1, 0, 0, 0, -0.6, 6.869, -0.2, -1.42109e-14 )
+
+[node name="Bridge9" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 12.8688, -0.2, -5.63249e-07 )
+
+[node name="Bridge10" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 18.8688, -0.2, -1.08779e-06 )
+
+[node name="Bridge11" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 23.3108, -0.2, -1.47611e-06 )
+
+[node name="Bridge12" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 27.7429, -0.2, -1.86358e-06 )
+
+[node name="WaterLandscapeStart" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.793, 0, 3.46615e-08 )
+
+[node name="WaterLandscapeMiddle" parent="." instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="WaterLandscapeEnd" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.8831, 0, 5.10823e-09 )
+
+[node name="Foliage" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )
+
+[node name="Bush" parent="Foliage" instance=ExtResource( 17 )]
+transform = Transform( 2.42688, 8.05451e-08, 1.18934, 0.651811, 2.26062, -1.33004, -0.994821, 1.48117, 2.02996, 1.48563, 1.06669, -5.65305 )
+
+[node name="Bush2" parent="Foliage" instance=ExtResource( 17 )]
+transform = Transform( 1.77694, -8.05451e-08, -2.03637, -1.11602, 2.26062, -0.973841, 1.70332, 1.48117, 1.48632, 11.0386, 1.50707, -6.32518 )
+
+[node name="Bush3" parent="Foliage" instance=ExtResource( 17 )]
+transform = Transform( 1.1099, -0.133485, -2.46061, 1.06831, 2.45795, 0.34854, 2.22061, -1.11577, 1.06218, 20.004, 1.24574, 6.03362 )
+
+[node name="flower_patch_blue" parent="Foliage" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 6.47317, 1.48072, -5.92975 )
+
+[node name="flower_patch_blue2" parent="Foliage" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.48699, 5.89882 )
+
+[node name="sign_noswim" parent="Foliage" instance=ExtResource( 16 )]
+transform = Transform( -8.02217e-08, -2.14953e-08, -1.9, -0.491756, 1.83526, 3.37711e-15, 1.83526, 0.491756, -8.30516e-08, -5.76352, -0.0732937, 0.60729 )
+
+[node name="flower_patch" parent="Foliage" instance=ExtResource( 15 )]
+transform = Transform( 2.81621, -0.180389, 5.376e-09, 0.155718, 2.43106, 1.42453, -0.0910601, -1.42162, 2.43604, 8.32247, 2.38298, 6.63134 )
+
+[node name="Obstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )
+
+[node name="BlockFrameRoll" parent="Obstacles" instance=ExtResource( 11 )]
+transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 32, 0.3, 0 )
+
+[node name="MoveableObstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )
+script = ExtResource( 9 )
+
+[node name="LogBridge" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21, -0.531662, -1.5 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.19209e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge2" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -0.531662, -1.5 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.19209e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge3" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, -0.531662, 1.74846e-07 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.19209e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge4" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29, -0.531662, 1.74846e-07 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.19209e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="Coins" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )
+
+[node name="CoinArc" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
+
+[node name="CoinArc2" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -2.13163e-14 )
+
+[node name="CoinArc3" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -5.68434e-14 )
+
+[node name="Items" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.72516, 0, 0 )
+
+[node name="Water" parent="." instance=ExtResource( 5 )]
+transform = Transform( 4.44636, 0, 0, 0, 4.44636, 0, 0, 0, 4.44636, -0.384909, -0.3, -8.88178e-15 )
+
+[node name="Checkpoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2748, 1, -1.13687e-13 )
+
+[connection signal="body_entered" from="EnterArea" to="." method="_on_EnterArea_body_entered"]

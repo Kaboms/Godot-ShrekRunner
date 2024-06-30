@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
 [ext_resource path="res://Meshes/Landscape/SwampLandscape/Landscape.glb" type="PackedScene" id=5]
 [ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=6]
-[ext_resource path="res://Meshes/Environment/Trees/Tree_02/tree_1.glb" type="PackedScene" id=7]
-[ext_resource path="res://Meshes/Environment/Trees/Tree_03/tree_2.glb" type="PackedScene" id=8]
 [ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=9]
 
 [node name="Spatial" type="Spatial"]
@@ -14,6 +12,7 @@ script = ExtResource( 4 )
 
 [node name="Floor" parent="." instance=ExtResource( 2 )]
 transform = Transform( 4.4, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
+visible = false
 
 [node name="Landscape" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.40807e-08, 0, 0.549748, 0, 1.00845, 0, -1.00845, 0, -2.40302e-08, 0, 0, 0 )
@@ -22,15 +21,6 @@ transform = Transform( -4.40807e-08, 0, 0.549748, 0, 1.00845, 0, -1.00845, 0, -2
 
 [node name="flower_patch_blue3" parent="Foliage" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 0.856537, 0.516085, 0, -0.516085, 0.856537, -2.07717, 1.11612, 5.27049 )
-
-[node name="tree_1" parent="Foliage" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57494, 0.264916, -5.46011 )
-
-[node name="tree_2" parent="Foliage" instance=ExtResource( 7 )]
-transform = Transform( 0.38967, 0, -0.920954, 0, 1, 0, 0.920954, 0, 0.38967, 3.03887, 0.460041, 5.27559 )
-
-[node name="tree_4" parent="Foliage" instance=ExtResource( 8 )]
-transform = Transform( 0.244391, 0.000479424, -0.969677, -0.341431, 0.936002, -0.0855894, 0.907578, 0.351995, 0.228914, 3.80971, 0.2275, -5.40839 )
 
 [node name="Bush" parent="Foliage" instance=ExtResource( 9 )]
 transform = Transform( 1.84039, 0.111296, 1.87266, 0.386771, 2.54448, -0.53133, -1.83566, 0.647702, 1.76554, -1.2576, 0.707331, -5.56887 )

@@ -4,6 +4,11 @@ signal BusMuteChanged(BusIdx, IsMute)
 
 var IsMasterMuted = false
 
+func MuteBusByName(BusName, IsMute: bool):
+	var soundBusIndex = AudioServer.get_bus_index(BusName)
+	MuteBus(soundBusIndex, IsMute)
+
+
 func MuteBus(BusIdx: int, IsMute: bool):
 	AudioServer.set_bus_mute(BusIdx, IsMute)
 	emit_signal("BusMuteChanged", BusIdx, IsMute)

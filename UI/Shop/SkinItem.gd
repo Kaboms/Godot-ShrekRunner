@@ -46,19 +46,20 @@ func UpdateLabel():
 
 
 func _on_TextureButton_pressed():
-	if StaticSDK.GetSDK().Money < ItemOutdoorSkin.Price: return
-
 	if ItemOutdoorSkin.Purchased:
 		StaticSDK.GetSDK().SetSkin(ItemOutdoorSkin.ID)
 		return
 
 	BlockerInstance = Blocker.instance()
 	get_tree().root.add_child(BlockerInstance) 
+	
 	if ItemOutdoorSkin.ForAdversation:
 		StaticSDK.GetSDK().ShowSkinRewardedVideo(ItemOutdoorSkin.ID)
 		return
 
-	sdk.TryBuySkin(ItemOutdoorSkin)
+	if StaticSDK.GetSDK().Money >= ItemOutdoorSkin.Price:
+		sdk.TryBuySkin(ItemOutdoorSkin)
+		return
 
 func SkinRewardSuccess(skinId):
 	Rewarded = skinId == ItemOutdoorSkin.ID

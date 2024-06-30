@@ -9,6 +9,9 @@ var moveable_obstacles
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if !Global.ShowFolliage:
+		$Foliage.hide()
+
 	pass # Replace with function body.
 	
 func Clear():
@@ -33,3 +36,8 @@ func _on_EnterArea_body_entered(body):
 		for child in moveable_obstacles.get_children():
 			if !(child is MoveableObstacle): continue
 			child.Activated = true
+
+func GetCheckpoint():
+	if has_node("Checkpoint"):
+		return get_node("Checkpoint")
+	return null

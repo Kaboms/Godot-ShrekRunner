@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/Coins/BaseCoin.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Items/MoneyBag/MoneyBag.glb" type="PackedScene" id=2]
+
+[node name="CoinsBag" instance=ExtResource( 1 )]
+CoinAmount = 50
+
+[node name="MoneyBag" parent="." index="2" instance=ExtResource( 2 )]
+transform = Transform( 0.348788, 0, 0, 0, 0.348788, 0, 0, 0, 0.348788, 0, 0, 0 )

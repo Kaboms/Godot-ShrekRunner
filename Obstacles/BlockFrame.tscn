@@ -19,6 +19,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 1.48375, 1 )
 
 [node name="BlockFrame" type="StaticBody"]
 transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 0, 0.3, 0 )
@@ -39,5 +40,5 @@ transform = Transform( 0.61125, -0.0103965, 0.012601, 0.0102836, 0.611356, 0.005
 transform = Transform( 0.655289, -0.0357874, 0, 0.0357874, 0.655289, 0, 0, 0, 0.656265, 0, 0.16647, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.23669, 0, 0, 0, 1.4729, 0, 0, 0, 0.14964, -0.2, 1.01227, 0 )
+transform = Transform( 1.23669, 0, 0, 0, 1.4729, 0, 7.10543e-15, 0, 0.14964, 0.0494238, 1.68112, -1.09027e-08 )
 shape = SubResource( 2 )

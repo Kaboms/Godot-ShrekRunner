@@ -26,7 +26,6 @@ func OnRewardClosed(rewardType):
 	if rewardType != BaseSDK.RewardTypes.NewLife: return
 	
 	if IsRewarded:
-		$"../Shrek".StandUp()
 		$"..".Continue()
 		hide()
 

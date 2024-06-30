@@ -3,6 +3,7 @@ extends Node
 class_name LevelManager
 
 export(Array, Resource) var Levels = []
+var LastSpawnedLevel = null
 
 var LevelInstances = []
 
@@ -19,8 +20,8 @@ func _ready():
 	OffsetToUpdate += OffsetZ
 	
 	for i in range(4):
-		var level = LevelsToPlace[i]
-		var LevelInstance: LevelSequence = level.instance()
+		LastSpawnedLevel = LevelsToPlace[i]
+		var LevelInstance: LevelSequence = LastSpawnedLevel.instance()
 		add_child(LevelInstance)
 		
 		LevelInstances.append(LevelInstance)
@@ -41,7 +42,12 @@ func _process(delta):
 		OffsetToUpdate += LevelInstances[1].LevelLenght
 
 		randomize()
-		var LevelInstance: LevelSequence = Levels[randi() % Levels.size()].instance()
+		var LevelsToSpawn = Levels.duplicate()
+		if LastSpawnedLevel != null:
+			LevelsToSpawn.erase(LastSpawnedLevel)
+
+		LastSpawnedLevel = LevelsToSpawn[randi() % LevelsToSpawn.size()]
+		var LevelInstance: LevelSequence = LastSpawnedLevel.instance()
 		add_child(LevelInstance)
 
 		LevelInstances.append(LevelInstance)
@@ -54,6 +60,10 @@ func StartGame():
 	$Shrek.StartGame()
 
 func Continue():
+	var currentLevel
 	for level in LevelInstances:
 		if $Shrek.transform.origin.z > level.OffsetZ:
 			level.Clear()
+			currentLevel = level
+			
+	$Shrek.StandUp(currentLevel.GetCheckpoint())

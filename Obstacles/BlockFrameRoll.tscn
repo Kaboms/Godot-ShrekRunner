@@ -21,7 +21,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 1, 0.75196, 1 )
+extents = Vector3( 1, 1.26386, 1 )
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "Block_Door_Block_Door"
@@ -38,25 +38,26 @@ surfaces/0 = {
 "vertex_count": 26
 }
 
-[node name="BlockFrame" type="StaticBody"]
-transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 0, 0.3, -0.2 )
+[node name="BlockFrameRoll" type="StaticBody"]
+transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 0, 0.3, 0 )
 collision_layer = 5
 collision_mask = 5
 
 [node name="sign_welcome" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161488, 0, 7.05887e-09 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.23669, 0, 0, 0, 1.4729, 0, 7.10543e-15, 0, 0.14964, 0.217805, 1.61285, 0 )
+transform = Transform( 1.23669, 0, 0, 0, 1.4729, 0, 7.10543e-15, 0, 0.14964, 0.0563169, 2.32984, 7.05887e-09 )
 shape = SubResource( 2 )
 
 [node name="Block_Door2" type="MeshInstance" parent="."]
-transform = Transform( 0.648445, -0.10101, 9.2529e-10, 0.10101, 0.648445, -7.22705e-09, 1.98105e-10, 7.28335e-09, 0.656265, 0.194024, 0.894005, 0.10348 )
+transform = Transform( 0.648445, -0.10101, 9.25285e-10, 0.10101, 0.648445, -7.22705e-09, 1.98108e-10, 7.28335e-09, 0.656265, 0.0325358, 0.894005, 0.10348 )
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="Block_Door4" type="MeshInstance" parent="."]
-transform = Transform( 0.610247, -0.0366062, 0.0123508, 0.0364888, 0.610348, 0.0060993, -0.0126933, -0.00535008, 0.611313, 0.194024, 1.40993, 0.0650711 )
+transform = Transform( 0.610247, -0.0366062, 0.0123508, 0.0364888, 0.610348, 0.0060993, -0.0126933, -0.00535008, 0.611313, 0.0325358, 1.40993, 0.0650711 )
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )

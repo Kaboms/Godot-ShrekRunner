@@ -291,7 +291,8 @@ rect_min_size = Vector2( 125, 125 )
 texture = ExtResource( 21 )
 expand = true
 
-[node name="Button" type="Button" parent="UI"]
+[node name="ResetButton" type="Button" parent="UI"]
+visible = false
 margin_left = 34.0
 margin_top = 22.0
 margin_right = 323.0
@@ -315,5 +316,5 @@ margin_bottom = 960.0
 [connection signal="pressed" from="UI/DownPanel/TextureRect2/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/DownPanel/TextureRect2/StartButton" to="UI" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/DownPanel/TextureRect3/ShopButton" to="UI" method="_on_ShopButton_pressed"]
-[connection signal="pressed" from="UI/Button" to="UI" method="_on_Button_pressed"]
+[connection signal="pressed" from="UI/ResetButton" to="UI" method="_on_Button_pressed"]
 [connection signal="Closed" from="Shop" to="UI" method="_on_Shop_Closed"]

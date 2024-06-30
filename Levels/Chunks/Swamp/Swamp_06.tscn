@@ -1,0 +1,186 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Items/Coins/Coin.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Obstacles/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/LevelSequence.gd" type="Script" id=4]
+[ext_resource path="res://Meshes/Landscape/SwampLandscape/Landscape.glb" type="PackedScene" id=5]
+[ext_resource path="res://Obstacles/BlockFrameRoll.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=7]
+[ext_resource path="res://Obstacles/FallenTree.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Meshes/Environment/Foliage/FlowerPatchPink/flower_patch.glb" type="PackedScene" id=9]
+[ext_resource path="res://Meshes/Environment/Foliage/Bush/Bush.glb" type="PackedScene" id=10]
+[ext_resource path="res://Obstacles/ThornLog.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Obstacles/Log.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/RandomSpawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Items/Coins/CoinArc.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Items/Potions/Magnite/PotionMagnite.tscn" type="PackedScene" id=15]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.62899, 5.70733, 1.59751 )
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+script = ExtResource( 4 )
+LevelLenght = 48.0
+
+[node name="EnterArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.323, 0, -1.13687e-13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="EnterArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.70406, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugCube" parent="." instance=ExtResource( 2 )]
+transform = Transform( 24, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0 )
+visible = false
+
+[node name="Landscape" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.40808e-08, 0, 1.62344, 0, 1.00845, 0, -1.00845, 0, -7.0963e-08, -12, 0, 5.24537e-07 )
+
+[node name="Landscape2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.40808e-08, 0, 1.62344, 0, 1.00845, 0, -1.00845, 0, -7.0963e-08, 12, 0, -5.24537e-07 )
+
+[node name="Foliage" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="flower_patch_blue" parent="Foliage" instance=ExtResource( 7 )]
+transform = Transform( 1, -2.22154e-08, -6.06621e-09, 2.22154e-08, 0.861221, 0.50823, -6.06621e-09, -0.50823, 0.861221, -2.61429, 1.15917, 5.32462 )
+
+[node name="flower_patch_blue2" parent="Foliage" instance=ExtResource( 7 )]
+transform = Transform( 1, -1.51933e-08, 1.73057e-08, 2.22154e-08, 0.834406, -0.55115, -6.06621e-09, 0.55115, 0.834406, -8.90284, 1.2326, -5.47701 )
+
+[node name="Bush" parent="Foliage" instance=ExtResource( 10 )]
+transform = Transform( 3.0528, -1.29755e-06, 1.3773, -0.422591, 3.18758, 0.936678, -1.31087, -1.0276, 2.90555, 11.7361, 0.450333, 6.09434 )
+
+[node name="Bush2" parent="Foliage" instance=ExtResource( 10 )]
+transform = Transform( 1.694, 0.930857, 2.78252, 1.02481, 2.82291, -1.56827, -2.74931, 1.6258, 1.12989, -3.29894, 1.55609, -6.88935 )
+
+[node name="flower_patch_blue3" parent="Foliage" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 0.847344, -0.531044, 0, 0.531044, 0.847344, 17.6845, 1.2099, -5.46719 )
+
+[node name="flower_patch_blue4" parent="Foliage" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 0.796256, 0.60496, 0, -0.60496, 0.796256, 28.1599, 0.893016, 4.76075 )
+
+[node name="flower_patch" parent="Foliage" instance=ExtResource( 9 )]
+transform = Transform( 1.93399, -0.161244, -0.121919, 0.0684504, 1.62586, -1.06446, 0.190206, 1.0544, 1.62272, 1.79437, 1.22202, -4.92123 )
+
+[node name="flower_patch2" parent="Foliage" instance=ExtResource( 9 )]
+transform = Transform( 1.47411, -0.0951975, 0, 0.0858988, 1.33013, 0.636759, -0.0410361, -0.635435, 1.3329, 20.7021, 1.70706, 5.87715 )
+
+[node name="flower_patch3" parent="Foliage" instance=ExtResource( 9 )]
+transform = Transform( 2.51307, -0.477719, -0.0265296, 0.443611, 2.27333, 1.08611, -0.179245, -1.07155, 2.31606, 3.69644, 2.08651, 6.46614 )
+
+[node name="Obstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="Log" parent="Obstacles" instance=ExtResource( 12 )]
+transform = Transform( -5.33279e-08, 0, -1.22, 0, 1.22, 0, 1.22, 0, -5.33279e-08, -9, 0, 0.75 )
+
+[node name="Log2" parent="Obstacles" instance=ExtResource( 12 )]
+transform = Transform( -5.33279e-08, 0, -1.22, 0, 1.22, 0, 1.22, 0, -5.33279e-08, -4, 0, -0.25 )
+
+[node name="StaticBody" parent="Obstacles" instance=ExtResource( 8 )]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 2, 0.491245, 0.258093 )
+
+[node name="StaticBody2" parent="Obstacles" instance=ExtResource( 8 )]
+transform = Transform( -1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 27, 0.491245, 0.258094 )
+
+[node name="BlockFrame" parent="Obstacles" instance=ExtResource( 6 )]
+transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 32, 0.3, 0 )
+
+[node name="BlockFrame2" parent="Obstacles" instance=ExtResource( 6 )]
+transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 32, 0.3, 1.5 )
+
+[node name="BlockFrame3" parent="Obstacles" instance=ExtResource( 6 )]
+transform = Transform( -2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, 32, 0.3, -1.5 )
+
+[node name="Bush" parent="Obstacles" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, 1.5 )
+
+[node name="Bush2" parent="Obstacles" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0, -1.5 )
+
+[node name="MoveableObstacles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="ThornLog2" parent="MoveableObstacles" instance=ExtResource( 11 )]
+transform = Transform( 2.29282e-15, -5.24537e-08, 1.2, -1.2, -5.24537e-08, 0, 5.24537e-08, -1.2, -5.24537e-08, 40.009, 0.2, -0.750001 )
+
+[node name="ThornLog3" parent="MoveableObstacles" instance=ExtResource( 11 )]
+transform = Transform( 2.29282e-15, -5.24537e-08, 1.2, -1.2, -5.24537e-08, 0, 5.24537e-08, -1.2, -5.24537e-08, 59.009, 0.2, 1.25 )
+
+[node name="Coins" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="CoinArc" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1.13687e-13 )
+
+[node name="CoinArc3" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1.13687e-13 )
+
+[node name="CoinArc2" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1.5 )
+
+[node name="CoinArc4" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
+
+[node name="CoinArc5" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -2.84217e-14 )
+
+[node name="CoinArc6" parent="Coins" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -1.7053e-13 )
+
+[node name="Coin" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5, 0 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.5, -5.68434e-14 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, -1.13687e-13 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.5, -5.68434e-14 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.5, -2.27374e-13 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5, 1.5 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.5, 1.5 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, 1.5 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.5, 1.5 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.5, 1.5 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5, -1.5 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0.5, -1.5 )
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, -1.5 )
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.5, -1.5 )
+
+[node name="Coin15" parent="Coins" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.5, -1.5 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="RandomSpawner" parent="Items" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 0 )
+SpatialsToSpawn = [ ExtResource( 15 ) ]
+SpawnChance = 0.2
+
+[connection signal="body_entered" from="EnterArea" to="." method="_on_EnterArea_body_entered"]

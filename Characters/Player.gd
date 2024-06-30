@@ -265,6 +265,7 @@ func Restart():
 	var BestScore = SDK.BestScore
 	if BestScore < Score:
 		BestScore = Score
+		SDK.SaveBestScore()
 	
 	SDK.SaveStats(BestScore, SDK.Money + Coins)
 	
@@ -335,11 +336,17 @@ func AddCoin(Coin: BaseCoin):
 	CurrentCoinPickupSound += 1
 	if CurrentCoinPickupSound >= CoinPickupSound.size():
 		CurrentCoinPickupSound = 0
-	Coins += 1
+	Coins += Coin.CoinAmount
 	Coin.AddedToPlayer()
 	emit_signal("AddCoin")
 	
-func StandUp():
+func StandUp(CheckPoint: Spatial):
+	if CheckPoint != null:
+		global_transform.origin = CheckPoint.global_transform.origin
+		StrafeDirection = 0
+		MoveRoad = 0
+		DistanceToRoad = 0
+
 	$AnimationPlayer.PlayStandUp()
 	yield(get_tree().create_timer(1), "timeout")
 	$AnimationPlayer.PlayRun()

@@ -76,11 +76,11 @@ func OnSkinRewardSuccess(args):
 	
 	print("Purchase skin: " + str(PurchasedSkins))
 	
-	window.setData(skinId, GetJsSkins())
+	SetSkin(skinId)
+	SetData()
 	
 	emit_signal("SkinRewardSuccess", args[0])
 
-	ChangeSkin(skinId)
 
 func OnSkinRewardFailed(args):
 	emit_signal("SkinRewardFailed", args[0])
@@ -119,25 +119,33 @@ func TryBuySkin(skin: OutdoorSkin):
 
 	print("Purchase skin: " + str(PurchasedSkins))
 
-	window.setData(skin.ID, GetJsSkins())
-	window.saveMoney(Money)
+	SetMoney(Money - skin.Price)
+
+	SetSkin(skin.ID)
+
+	SetData()
+	
+	window.saveStats(Money, BestScore)
 
 	emit_signal("SkinPurchased", skin.ID)
-	
-	ChangeSkin(skin.ID)
 
 func OnLoadData(args):
 	TranslationServer.set_locale(LangReferences.get(window.ysdk.environment.i18n.lang, 'en'))
-
+	var argsMap = args[0]
 	if args.size() != 0:
-		if args[0].skins:
+		if argsMap.skins:
 			PurchasedSkins = []
-			for skinIndex in range(args[0].skins.length):
-				PurchasedSkins.append(args[0].skins[skinIndex])
+			for skinIndex in range(argsMap.skins.length):
+				PurchasedSkins.append(argsMap.skins[skinIndex])
 			print(PurchasedSkins)
 
-		if args[0].skinId != null:
-			ChangeSkin(args[0].skinId)
+		if argsMap.skinId != null:
+			SetSkin(argsMap.skinId)
+		
+		if argsMap.muteSound:
+			SoundManager.MuteBusByName("Master", argsMap.muteSound)
+		if argsMap.muteMusic:
+			SoundManager.MuteBusByName("Music", argsMap.muteMusic)
 
 	print("DataLoaded")
 	emit_signal("DataLoaded")
@@ -148,9 +156,13 @@ func RemoveProgress():
 	window.clearSkins()
 
 func SetSkin(newSkinId):
-	ChangeSkin(newSkinId)
-	window.setData(SelectedSkinId, GetJsSkins())
-
-func ChangeSkin(newSkinId):
 	SelectedSkinId = newSkinId
 	emit_signal("SkinChanged", SelectedSkinId)
+
+func SetData():
+	var isMasterMute = AudioServer.is_bus_mute(AudioServer.get_bus_index("Master"))
+	var isMusicMute = AudioServer.is_bus_mute(AudioServer.get_bus_index("Music"))
+	window.setData(SelectedSkinId, GetJsSkins(), isMasterMute, isMusicMute)
+
+func SaveBestScore():
+	window.setNewMaxScore(BestScore)
