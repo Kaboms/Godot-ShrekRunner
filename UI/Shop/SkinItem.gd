@@ -18,6 +18,7 @@ func _ready():
 	sdk.connect("SkinRewardClosed", self, "SkinRewardClosed")
 
 	sdk.connect("SkinPurchased", self, "OnSkinPurchased")
+	sdk.connect("SkinPurchaseFailed", self, "OnSkinPurchaseFailed")
 
 
 func SetSkin(skin: OutdoorSkin):
@@ -50,14 +51,13 @@ func _on_TextureButton_pressed():
 		StaticSDK.GetSDK().SetSkin(ItemOutdoorSkin.ID)
 		return
 
-	BlockerInstance = Blocker.instance()
-	get_tree().root.add_child(BlockerInstance) 
-	
 	if ItemOutdoorSkin.ForAdversation:
+		ShowBlocker()
 		StaticSDK.GetSDK().ShowSkinRewardedVideo(ItemOutdoorSkin.ID)
 		return
 
 	if StaticSDK.GetSDK().Money >= ItemOutdoorSkin.Price:
+		ShowBlocker()
 		sdk.TryBuySkin(ItemOutdoorSkin)
 		return
 
@@ -85,9 +85,18 @@ func OnSkinPurchased(skinId):
 
 	ItemOutdoorSkin.Purchased = true
 	UpdateLabel()
-	
+
+func OnSkinPurchaseFailed(skinId):
+	if skinId != ItemOutdoorSkin.ID: return
+
+	RemoveBlocker()
+
 func RemoveBlocker():
 	if BlockerInstance == null: return
 
 	BlockerInstance.queue_free()
 	BlockerInstance = null
+	
+func ShowBlocker():
+	BlockerInstance = Blocker.instance()
+	get_tree().root.add_child(BlockerInstance) 

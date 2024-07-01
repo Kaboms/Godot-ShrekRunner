@@ -114,7 +114,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )
 script = ExtResource( 9 )
 
 [node name="LogBridge" parent="MoveableObstacles" instance=ExtResource( 10 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21, -0.531662, -1.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, -0.531662, -1.5 )
 Speed = 9.0
 
 [node name="BaseCoin8" parent="MoveableObstacles/LogBridge" instance=ExtResource( 7 )]
@@ -127,7 +127,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3841
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
 
 [node name="LogBridge2" parent="MoveableObstacles" instance=ExtResource( 10 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -0.531662, -1.5 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 23, -0.531662, -1.5 )
 Speed = 9.0
 
 [node name="BaseCoin8" parent="MoveableObstacles/LogBridge2" instance=ExtResource( 7 )]
@@ -140,7 +140,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3841
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
 
 [node name="LogBridge3" parent="MoveableObstacles" instance=ExtResource( 10 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26, -0.531662, 1.74846e-07 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, -0.531662, 1.31135e-07 )
 Speed = 9.0
 
 [node name="BaseCoin8" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
@@ -153,7 +153,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3841
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
 
 [node name="LogBridge4" parent="MoveableObstacles" instance=ExtResource( 10 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29, -0.531662, 1.74846e-07 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28, -0.531662, 1.31135e-07 )
 Speed = 9.0
 
 [node name="BaseCoin8" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
@@ -164,6 +164,10 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3841
 
 [node name="BaseCoin10" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge5" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31, -0.531662, 2.62269e-07 )
+Speed = 9.0
 
 [node name="Coins" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7252, 0, 0 )

@@ -262,12 +262,14 @@ func Restart():
 	SoundManager.MuteAllSound(false)
 
 	var SDK: BaseSDK = StaticSDK.GetSDK()
-	var BestScore = SDK.BestScore
-	if BestScore < Score:
-		BestScore = Score
+
+	if Score > SDK.BestScore:
+		SDK.BestScore = Score
 		SDK.SaveBestScore()
 	
-	SDK.SaveStats(BestScore, SDK.Money + Coins)
+	SDK.SaveStats(SDK.BestScore, SDK.Money + Coins)
+	
+	StaticSDK.GetSDK().ShowAdvBanner()
 	
 	get_node("/root/Main").Restart()
 
@@ -321,9 +323,6 @@ func Death():
 	ActivateMagnite(false)
 
 	emit_signal("Death")
-	
-	yield(get_tree().create_timer(DeathTimeout / 2), "timeout")
-	StaticSDK.GetSDK().ShowAdvBanner()
 
 func Landed():
 	if IsDeath: return

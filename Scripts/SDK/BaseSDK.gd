@@ -11,6 +11,7 @@ signal SkinRewardFailed
 signal SkinRewardClosed
 
 signal SkinPurchased
+signal SkinPurchaseFailed
 
 signal SkinChanged
 

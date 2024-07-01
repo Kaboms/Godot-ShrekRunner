@@ -4,7 +4,7 @@
 [ext_resource path="res://Obstacles/MoveableObstacle.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.724551, 0.333257, 1.70607 )
+extents = Vector3( 0.949312, 0.333257, 1.70607 )
 
 [node name="LogBridge" type="StaticBody"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
@@ -15,4 +15,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.045 )
 shape = SubResource( 1 )
 
 [node name="Log_Bridge" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( 2.25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

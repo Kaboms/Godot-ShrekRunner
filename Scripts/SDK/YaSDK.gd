@@ -53,7 +53,6 @@ func ShowAdvBanner():
 	window.showAdvBanner()
 
 func ShowRewardedVideo(rewardType):
-	SoundManager.MuteAllSound(true)
 	window.showRewardedVideo(rewardType)
 
 func ShowSkinRewardedVideo(skinId):
@@ -113,7 +112,9 @@ func GetJsSkins():
 	return jsSkins
 
 func TryBuySkin(skin: OutdoorSkin):
-	if Money < skin.Price: return
+	if Money < skin.Price:
+		emit_signal("SkinPurchaseFailed", skin.ID)
+		return
 
 	PurchasedSkins.append(skin.ID)
 
