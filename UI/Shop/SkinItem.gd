@@ -28,22 +28,37 @@ func SetSkin(skin: OutdoorSkin):
 	UpdateLabel()
 
 func UpdateLabel():
-	$VBoxContainer/TextureButton/Adv.hide()
-	$VBoxContainer/TextureButton/Price.show()
-	
+	# I don't know why, but tr() for translation does not update label at browser. Standalone game works perfectly
+	# So I'm forced to use several labels
 	if ItemOutdoorSkin.Purchased:
-		$VBoxContainer/TextureButton/Price.set_text(tr("Use"))
+		$VBoxContainer/TextureButton/Use.show()
+		
+		$VBoxContainer/TextureButton/Price.hide()
+		$VBoxContainer/TextureButton/Free.hide()
+		$VBoxContainer/TextureButton/Adv.hide()
 		return
 
 	if ItemOutdoorSkin.ForAdversation:
 		$VBoxContainer/TextureButton/Adv.show()
+		
+		$VBoxContainer/TextureButton/Use.hide()
 		$VBoxContainer/TextureButton/Price.hide()
+		$VBoxContainer/TextureButton/Free.hide()
 		return
-
+	
 	if (ItemOutdoorSkin.Price > 0):
+		$VBoxContainer/TextureButton/Price.show()
 		$VBoxContainer/TextureButton/Price.set_text(str(ItemOutdoorSkin.Price))
+		
+		$VBoxContainer/TextureButton/Adv.hide()
+		$VBoxContainer/TextureButton/Free.hide()
+		$VBoxContainer/TextureButton/Use.hide()
 	else:
-		$VBoxContainer/TextureButton/Price.set_text(tr("Free"))
+		$VBoxContainer/TextureButton/Free.show()
+		
+		$VBoxContainer/TextureButton/Adv.hide()
+		$VBoxContainer/TextureButton/Use.hide()
+		$VBoxContainer/TextureButton/Price.hide()
 
 
 func _on_TextureButton_pressed():

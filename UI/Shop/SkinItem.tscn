@@ -66,6 +66,7 @@ icon_align = 1
 expand_icon = true
 
 [node name="Price" type="Label" parent="VBoxContainer/TextureButton"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -76,6 +77,38 @@ margin_right = 131.25
 margin_bottom = 37.5
 custom_fonts/font = SubResource( 1 )
 text = "999999"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Use" type="Label" parent="VBoxContainer/TextureButton"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.25
+margin_top = -37.5
+margin_right = 131.25
+margin_bottom = 37.5
+custom_fonts/font = SubResource( 1 )
+text = "Use"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Free" type="Label" parent="VBoxContainer/TextureButton"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.25
+margin_top = -37.5
+margin_right = 131.25
+margin_bottom = 37.5
+custom_fonts/font = SubResource( 1 )
+text = "Free"
 align = 1
 valign = 1
 uppercase = true

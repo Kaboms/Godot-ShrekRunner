@@ -126,7 +126,7 @@ func TryBuySkin(skin: OutdoorSkin):
 
 	SetData()
 	
-	window.saveStats(Money, BestScore)
+	window.saveStats(BestScore, Money)
 
 	emit_signal("SkinPurchased", skin.ID)
 
