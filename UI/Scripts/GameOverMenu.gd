@@ -11,7 +11,7 @@ func _on_Shrek_Death():
 	show()
 
 func _on_ExitButton_pressed():
-	$"../Shrek".Restart()
+	$"../Shrek".EndGame()
 
 func _on_ContinueButton_pressed():
 	StaticSDK.GetSDK().ShowRewardedVideo(BaseSDK.RewardTypes.NewLife)

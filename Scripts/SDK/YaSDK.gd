@@ -14,6 +14,10 @@ var SkinRewardClosedCallback = JavaScript.create_callback(self, "OnSkinRewardClo
 var OnLoadScoreCallback = JavaScript.create_callback(self, "OnLoadScore")
 var OnLoadMoneyCallback = JavaScript.create_callback(self, "OnLoadMoney")
 var OnLoadDataCallback = JavaScript.create_callback(self, "OnLoadData")
+
+var OnReadyCallback = JavaScript.create_callback(self, "OnReady")
+
+var OnAdvBannerShowCallback = JavaScript.create_callback(self, "OnAdvBannerShow")
 var window = JavaScript.get_interface("window")
 
 var LangReferences = {
@@ -25,6 +29,8 @@ var LangReferences = {
 }
 
 func _ready():
+	window.onReadyCallback = OnReadyCallback
+	
 	window.tabActivated = TabActivatedCallback
 	window.tabDeactivated = TabDeactivatedCallback
 	
@@ -39,6 +45,15 @@ func _ready():
 	window.onLoadScoreCallback = OnLoadScoreCallback
 	window.onLoadMoneyCallback = OnLoadMoneyCallback
 	window.onLoadDataCallback = OnLoadDataCallback
+	
+	window.onAdvBannerShow = OnAdvBannerShowCallback
+
+func _process(delta):
+	if CurrentAdvBunnerTimeout > 0:
+		CurrentAdvBunnerTimeout -= delta
+		
+func OnReady():
+	ShowAdvBanner()
 
 func TabActivated(args):
 	SoundManager.MuteAllSound(false)
@@ -50,9 +65,20 @@ func StartGame():
 	window.initGame()
 
 func ShowAdvBanner():
+	if CurrentAdvBunnerTimeout > 0: return
+
+	SoundManager.MuteAllSound(true)
+	
 	window.showAdvBanner()
 
+func OnAdvBannerShow(args):
+	CurrentAdvBunnerTimeout = AdvBunnerTimeout
+
+	SoundManager.MuteAllSound(false)
+
 func ShowRewardedVideo(rewardType):
+	SoundManager.MuteAllSound(true)
+	
 	window.showRewardedVideo(rewardType)
 
 func ShowSkinRewardedVideo(skinId):
@@ -79,7 +105,6 @@ func OnSkinRewardSuccess(args):
 	SetData()
 	
 	emit_signal("SkinRewardSuccess", args[0])
-
 
 func OnSkinRewardFailed(args):
 	emit_signal("SkinRewardFailed", args[0])
@@ -131,7 +156,8 @@ func TryBuySkin(skin: OutdoorSkin):
 	emit_signal("SkinPurchased", skin.ID)
 
 func OnLoadData(args):
-	TranslationServer.set_locale(LangReferences.get(window.ysdk.environment.i18n.lang, 'en'))
+	var locale = LangReferences.get(window.ysdk.environment.i18n.lang, 'en')
+	TranslationServer.set_locale(locale)
 	var argsMap = args[0]
 	if args.size() != 0:
 		if argsMap.skins:
@@ -153,8 +179,9 @@ func OnLoadData(args):
 
 func RemoveProgress():
 	SaveStats(0, 0)
-
-	window.clearSkins()
+	SelectedSkinId = -1
+	PurchasedSkins = []
+	SetData()
 
 func SetSkin(newSkinId):
 	SelectedSkinId = newSkinId

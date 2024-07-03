@@ -15,21 +15,26 @@ export(Resource) var SoundOffIcon
 
 func _ready():
 	SoundBusIndex = AudioServer.get_bus_index(SoundBusName)
-	SetSoundEnabled(!AudioServer.is_bus_mute(SoundBusIndex))
+	SoundEnabled =  SoundManager.IsBusMuted(SoundBusIndex)
+
+	OnStateChanged()
 
 	SoundManager.connect("BusMuteChanged", self, "_on_SoundManager_BusMuteChanged")
 	
 func SetSoundEnabled(Enabled : bool):
 	SoundEnabled = Enabled
-	
+
+	OnStateChanged()
+
+	SoundManager.MuteBus(SoundBusIndex, !SoundEnabled)
+
+func OnStateChanged():
 	if SoundEnabled:
 		$HBoxContainer/Icon.texture = SoundOnIcon
 		$HBoxContainer/Label.text = SoundOnText
 	else:
 		$HBoxContainer/Icon.texture = SoundOffIcon
 		$HBoxContainer/Label.text = SoundOffText
-
-	SoundManager.MuteBus(SoundBusIndex, !SoundEnabled)
 
 func _on_SoundButton_button_down():	
 	SetSoundEnabled(!SoundEnabled)

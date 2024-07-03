@@ -26,6 +26,9 @@ var BestScore: int = 0
 var PurchasedSkins = []
 var SelectedSkinId = -1
 
+var AdvBunnerTimeout = 61
+var CurrentAdvBunnerTimeout = 0
+
 enum RewardTypes {
 	NewLife
 }

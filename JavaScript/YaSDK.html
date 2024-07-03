@@ -21,6 +21,10 @@ onLoadScoreCallback = null;
 onLoadMoneyCallback = null;
 onLoadDataCallback = null;
 
+onAdvBannerShow= null;
+
+onReadyCallback= null;
+
 player = null;
 
 function loadStats(stats_data){
@@ -53,7 +57,7 @@ function initPlayer() {
                         ysdk.features.LoadingAPI.ready();
                         console.log("Ready")
 
-                        showAdvBanner();
+                        onReadyCallback()
                     }
                 })
             });
@@ -103,7 +107,7 @@ function showAdvBanner(){
 	ysdk.adv.showFullscreenAdv({
     	callbacks: {
         	onClose: function(wasShown) {
-          	// Действие после закрытия рекламы.
+                window.onAdvBannerShow(wasShown)
         	},
         	onError: function(error) {
           	// Действие в случае ошибки.

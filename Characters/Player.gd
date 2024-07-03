@@ -256,7 +256,7 @@ func SetIsRoll(InIsRoll: bool):
 	IsRoll = InIsRoll
 	$CapsuleCollision.disabled = IsRoll
 
-func Restart():
+func EndGame():
 	IsRestart = true
 
 	SoundManager.MuteAllSound(false)

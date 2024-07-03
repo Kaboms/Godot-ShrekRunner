@@ -107,6 +107,10 @@ window/stretch/aspect="expand"
 
 SDK=""
 SDK.Yandex="Yandex"
+DebugUI.editor=true
+DebugUI.debug=true
+DebugUI=false
+DebugUI.release=false
 
 [gui]
 

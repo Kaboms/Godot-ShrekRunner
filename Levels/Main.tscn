@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Main.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://UI/Images/Icons/Icon_Settings.png" type="Texture" id=17]
 [ext_resource path="res://UI/Images/Icons/Icon_Cart.png" type="Texture" id=18]
 [ext_resource path="res://UI/CoinsAmount.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Fonts/Oswald/Oswald-Bold.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://UI/Images/Icons/Icon_Crown.png" type="Texture" id=21]
 [ext_resource path="res://UI/Images/IconButton_Small_Blank_Square.png" type="Texture" id=22]
 
@@ -31,6 +32,10 @@ size = 55
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 48
+font_data = ExtResource( 20 )
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 2 )
@@ -297,7 +302,17 @@ margin_left = 34.0
 margin_top = 22.0
 margin_right = 323.0
 margin_bottom = 234.0
+custom_fonts/font = SubResource( 5 )
 text = "REMOVE PROGRESS"
+
+[node name="AddMoney" type="Button" parent="UI"]
+visible = false
+margin_left = 34.0
+margin_top = 262.0
+margin_right = 428.0
+margin_bottom = 474.0
+custom_fonts/font = SubResource( 5 )
+text = "ADD MONEY"
 
 [node name="Shop" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -317,4 +332,5 @@ margin_bottom = 960.0
 [connection signal="pressed" from="UI/DownPanel/TextureRect2/StartButton" to="UI" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/DownPanel/TextureRect3/ShopButton" to="UI" method="_on_ShopButton_pressed"]
 [connection signal="pressed" from="UI/ResetButton" to="UI" method="_on_Button_pressed"]
+[connection signal="pressed" from="UI/AddMoney" to="UI" method="_on_AddMoney_pressed"]
 [connection signal="Closed" from="Shop" to="UI" method="_on_Shop_Closed"]
