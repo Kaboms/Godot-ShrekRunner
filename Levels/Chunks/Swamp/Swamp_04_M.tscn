@@ -56,19 +56,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1.5 )
 [node name="Obstacle4" parent="Obstacles" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0 )
 
-[node name="Obstacle5" parent="Obstacles" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1.5 )
-
 [node name="RandomSpawner2" parent="Obstacles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.22, 0.97793, 0.0589964, -0.92075 )
 SpatialsToSpawn = [ ExtResource( 12 ) ]
 SpawnChance = 0.75
 
 [node name="Beanstlk" parent="Obstacles" instance=ExtResource( 13 )]
-transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, -9, -3.82137e-15, -1.5 )
+transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, -9, 1.31134e-07, 1.5 )
 
 [node name="Beanstlk3" parent="Obstacles" instance=ExtResource( 13 )]
-transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, 8, 2.86603e-14, -1.5 )
+transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, 8, 1.31134e-07, 1.5 )
 
 [node name="Beanstlk2" parent="Obstacles" instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.74228e-08, -8.74228e-08, -4, 3.82137e-15, 8.74228e-08 )
@@ -76,13 +73,13 @@ transform = Transform( -8.74228e-08, 2, 0, 8.74228e-08, 3.82137e-15, 2, 2, 8.742
 [node name="Coins" type="Spatial" parent="."]
 
 [node name="CoinArc" parent="Coins" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 1.5 )
 
 [node name="CoinArc2" parent="Coins" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 
 [node name="CoinArc3" parent="Coins" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1.5 )
 
 [node name="BaseCoin2" parent="Coins" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0 )

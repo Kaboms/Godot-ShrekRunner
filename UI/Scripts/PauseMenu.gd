@@ -8,4 +8,4 @@ func _on_ContinueButton_pressed():
 
 func _on_ExitButton_pressed():
 	get_tree().paused = false
-	$"../Shrek".Restart()
+	$"../Shrek".EndGame()

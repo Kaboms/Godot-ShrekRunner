@@ -10,4 +10,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$'..'.transform.basis = $'..'.transform.basis.rotated(RotationAxis, delta * RotationSpeed)
+	$'..'.transform.basis = $'..'.transform.basis.rotated(RotationAxis, delta * RotationSpeed * Global.SpeedAlpha)

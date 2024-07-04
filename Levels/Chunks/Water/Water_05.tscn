@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Meshes/Landscape/WaterLandscape/WaterLandscapeEnd.glb" type="PackedScene" id=1]
 [ext_resource path="res://Meshes/Environment/DebugCube.tscn" type="PackedScene" id=2]
@@ -10,9 +10,6 @@
 [ext_resource path="res://Items/Coins/CoinArc.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Obstacles/MoveableObstacle.gd" type="Script" id=9]
 [ext_resource path="res://Obstacles/LogBridge.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/RandomSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Items/Potions/Magnite/PotionMagnite.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Items/Coins/CoinsBag.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Meshes/Environment/Foliage/FlowerPatch/flower_patch_blue.glb" type="PackedScene" id=14]
 [ext_resource path="res://Meshes/Environment/Foliage/FlowerPatchPink/flower_patch.glb" type="PackedScene" id=15]
 [ext_resource path="res://Meshes/Environment/SignNoSwim/sign_noswim.glb" type="PackedScene" id=16]
@@ -43,23 +40,14 @@ visible = false
 
 [node name="Bridges" type="Spatial" parent="."]
 
-[node name="Bridge" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -13, -0.2, 0 )
-
 [node name="Bridge2" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -7, -0.2, 6.1196e-07 )
-
-[node name="Bridge3" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -4, -0.2, 1.5 )
-
-[node name="Bridge4" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 2, -0.2, 1.5 )
-
-[node name="Bridge5" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 4.426, -0.2, 1.74846e-07 )
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, -10, -0.2, 7.43094e-07 )
 
 [node name="Bridge7" parent="Bridges" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 8.86882, -0.2, -2.13558e-07 )
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 6.86882, -0.2, -1.26135e-07 )
+
+[node name="Bridge8" parent="Bridges" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -5.24537e-08, 0, 1, 0, 8.74228e-08, 0, -0.6, 12.8688, -0.2, -3.88403e-07 )
 
 [node name="WaterLandscapeStart" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.40484, 0, -6.37975e-07 )
@@ -89,7 +77,7 @@ transform = Transform( 1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 19.4732, 1.
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.48699, 5.89882 )
 
 [node name="sign_noswim" parent="Foliage" instance=ExtResource( 16 )]
-transform = Transform( -8.02217e-08, -2.14953e-08, -1.9, -0.491756, 1.83526, 3.37711e-15, 1.83526, 0.491756, -8.30516e-08, -2.76352, -0.0732937, 0.60729 )
+transform = Transform( -8.02217e-08, -2.14953e-08, -1.9, -0.491756, 1.83526, 3.37711e-15, 1.83526, 0.491756, -8.30516e-08, -2.76352, -0.0732937, 0.589627 )
 
 [node name="flower_patch" parent="Foliage" instance=ExtResource( 15 )]
 transform = Transform( 2.81621, -0.180389, 5.376e-09, 0.155718, 2.43106, 1.42453, -0.0910601, -1.42162, 2.43604, 8.32247, 2.38298, 6.63134 )
@@ -102,45 +90,84 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
 script = ExtResource( 9 )
 
 [node name="LogBridge" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, -0.5, 3.0598e-07 )
+Speed = 9.0
+
+[node name="LogBridge2" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, -0.5, 1.74846e-07 )
+Speed = 9.0
+
+[node name="LogBridge7" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -0.5, -8.74226e-08 )
+Speed = 9.0
+
+[node name="LogBridge8" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27, -0.5, -2.18557e-07 )
+Speed = 9.0
+
+[node name="LogBridge3" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, -0.5, 1.5 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge4" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22, -0.5, 1.5 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge5" parent="MoveableObstacles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, -0.5, -1.5 )
+Speed = 9.0
+
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge5" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge5" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge5" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
+
+[node name="LogBridge6" parent="MoveableObstacles" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22, -0.5, -1.5 )
 Speed = 9.0
 
-[node name="RandomSpawner" parent="MoveableObstacles/LogBridge" instance=ExtResource( 11 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0 )
-SpatialsToSpawn = [ ExtResource( 12 ), ExtResource( 13 ) ]
+[node name="BaseCoin8" parent="MoveableObstacles/LogBridge6" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 1 )
+
+[node name="BaseCoin9" parent="MoveableObstacles/LogBridge6" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.38419e-07, 1, 0 )
+
+[node name="BaseCoin10" parent="MoveableObstacles/LogBridge6" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.57628e-07, 1, -1 )
 
 [node name="Coins" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
 
-[node name="CoinArc" parent="Coins" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 1.5 )
+[node name="CoinArc3" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4.80825e-07 )
 
-[node name="CoinArc2" parent="Coins" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+[node name="CoinArc4" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -1.42109e-14 )
 
-[node name="BaseCoin" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, 0 )
-
-[node name="BaseCoin2" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -1.42109e-14 )
-
-[node name="BaseCoin3" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.5, -1.42109e-14 )
-
-[node name="BaseCoin4" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, -8.52651e-14 )
-
-[node name="BaseCoin5" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.5, -1.42109e-13 )
-
-[node name="BaseCoin6" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.5, -1.98952e-13 )
-
-[node name="BaseCoin7" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0.5, -2.55795e-13 )
-
-[node name="BaseCoin8" parent="Coins" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.5, -1.98952e-13 )
+[node name="CoinArc5" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -2.62268e-07 )
 
 [node name="Items" type="Spatial" parent="."]
 

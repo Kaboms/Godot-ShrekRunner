@@ -30,7 +30,7 @@ export(int) var MaxSpeed = 10
 export(int) var StrafeSpeed = 10
 export(float) var StrafeDistance = 1.5
 
-export var MaxJumpHeight = 2.1
+export var MaxJumpHeight = 1.8
 export var JumpDistance = 0.4
 var Gravity = 0
 
@@ -95,8 +95,6 @@ var LastZPos: int = 0
 var ScoreDistance: float = 0
 ###
 
-var IsRestart = false
-
 ### Magnite
 export(float) var MagniteDuration = 20
 var MagniteTimePassed = 0
@@ -113,7 +111,9 @@ func _ready():
 	$AnimationPlayer.Character = $"."
 
 func _process(delta):
-	Global.SpeedAlpha = Speed / MaxSpeed;
+	if !IsDeath:
+		Global.SpeedAlpha = Speed / MaxSpeed;
+
 	HandleCameraSetup(delta)
 	HandleMagnite(delta)
 
@@ -257,8 +257,6 @@ func SetIsRoll(InIsRoll: bool):
 	$CapsuleCollision.disabled = IsRoll
 
 func EndGame():
-	IsRestart = true
-
 	SoundManager.MuteAllSound(false)
 
 	var SDK: BaseSDK = StaticSDK.GetSDK()
@@ -310,6 +308,8 @@ func KeyboardControl(event):
 
 func Death():
 	if IsDeath: return
+	
+	Global.SpeedAlpha = 0
 	
 	SoundManager.MuteAllSound(true)
 	
