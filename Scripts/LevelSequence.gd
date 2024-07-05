@@ -2,6 +2,7 @@ extends Node
 
 class_name LevelSequence
 
+export var SpawnChance: float = 1
 export var LevelLenght: float = 0
 var OffsetZ: float = 0
 
